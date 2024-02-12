@@ -1,0 +1,23 @@
+.button{
+    font-size: x-large;
+    padding: 15px;
+    border-radius: 0cm;
+    margin-bottom: 20px;
+    background-color: white;
+    color: var(--main-color);
+    border-color: var(--main-color);
+    transition: all 0.5s;
+}
+
+.button:hover, .button:focus{
+    transform: translateY(-10px);
+    background-color: var(--main-color);
+    color: white;
+    box-shadow: 10px 10px black;
+    outline: none;
+}
+
+.button:active{
+    transition: all 0.01s;
+    background-color: var(--main-color-dark);
+}

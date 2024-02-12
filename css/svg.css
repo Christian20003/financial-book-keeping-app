@@ -1,0 +1,17 @@
+.invalid .icon{
+    stroke: red;
+}
+
+.icon{
+    width: 40px;
+    margin-right: 15px;
+    stroke: black;
+}
+
+.icon-invalid{
+    width: 50px;
+    fill: red;
+    position: absolute;
+    top: 180px;
+    left: 400px;
+}

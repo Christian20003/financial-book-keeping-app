@@ -1,0 +1,33 @@
+.input{
+    display: block;
+    width: 400px;
+    margin-top: 50px;
+    margin-bottom: 40px;
+    padding: 15px;
+    font-size: 18pt;
+    border: none;
+    border-top-left-radius: 0.3cm;
+    border-top-right-radius: 0.3cm;
+    border-bottom: 3px black solid;
+    transition: border-color 0.5s ease-out;
+    background-color: #edf4f3;
+}
+
+.input:focus{
+    outline: none;
+    border-color: var(--main-color);
+}
+
+.placeholder{
+    position: absolute;
+    display: flex;
+    font-size: 15pt;
+    left: 50px;
+    opacity: 0.4;
+    pointer-events: none;
+    transition: all 0.5s;
+}
+
+.invalid{
+    color: red;
+}
