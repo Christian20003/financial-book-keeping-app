@@ -1,0 +1,115 @@
+nav{
+    display: flex;
+    background-color: #0d1117;
+    position: sticky;
+    font-size: 18pt;
+}
+
+.nav-list{
+    list-style-type: none;
+    width: 100%;
+    margin: 0;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 15px;
+}
+
+.nav-list li{
+    display: inline;
+    padding-right: 50px;
+}
+
+.start-link a{
+    color: var(--main-color);
+    text-decoration: none;
+    padding-right: 100px;
+}
+
+.ref{
+    text-decoration: none;
+    color: white;
+    position: relative;
+    transition: color 0.5s;
+}
+
+.ref::after{
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--main-color);
+    transition: transform 0.25s ease-out;
+}
+
+.ref:hover::after,
+.ref:focus::after{
+    transform: scaleX(1);
+}
+
+.ref:hover, .ref:focus{
+    outline: none;
+    color: var(--main-color);
+}
+
+.ref:active{
+    color: var(--main-color-dark);
+}
+
+.nav-icon, .nav-icon-stroke{
+    width: 35px;
+    margin-bottom: -10px;
+    margin-right: 10px;
+}
+
+.nav-icon{
+    fill: white;
+    transition: fill 0.5s;
+}
+
+.nav-icon-stroke{
+    stroke: white;
+    transition: stroke 0.5s;
+}
+
+.nav-icon:has(+ .ref:hover), .nav-icon:has(+ .ref:focus){
+    fill: var(--main-color);
+}
+
+.nav-icon-stroke:has(+ .ref:hover), .nav-icon-stroke:has(+ .ref:focus){
+    stroke: var(--main-color)
+}
+
+.nav-icon:has(+ .ref:active){
+    fill: var(--main-color-dark);
+}
+
+.nav-icon-stroke:has(+ .ref:active){
+    stroke: var(--main-color-dark);
+}
+
+.profile{
+    display: flex;
+    position: relative;
+    float: right;
+    width: 250px;
+    margin-right: 20px;
+    margin-top: -25px;
+    margin-bottom: -20px;
+    color: white;
+}
+
+.profile img{
+    width: 90px;
+    border-radius: 50%;
+    float: right;
+    padding-top: 20px;
+    margin-bottom: -10px;
+    transition: all 0.2s;
+}
+
+.profile img:hover{
+    opacity: 0.5;
+}

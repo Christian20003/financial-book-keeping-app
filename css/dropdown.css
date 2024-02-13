@@ -1,0 +1,15 @@
+.dropdown-content{
+    display: block;
+    position: absolute;
+    top: 70px;
+    left: 0;
+    width: 100%;
+    background-color: #f4f4f4;
+    color: black;
+    opacity: 0;
+    z-index: 1;
+}
+
+.dropdown:checked ~ .dropdown-content{
+    opacity: 1;
+}

@@ -1,0 +1,50 @@
+:root{
+    --main-color: #ff3946;
+    --main-color-dark: #af2932;
+}
+
+body{
+    margin: 0px;
+    font-family: "Kanit", "Sans";
+    background-color: #f4f4f4;
+}
+
+section{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.left-container, .right-container, .left-little-container, .right-little-container{
+    display: flex;
+    flex-direction: column;
+    width: 47%;
+    margin-bottom: 25px;
+    padding: 15px;
+    border-radius: 0.3cm;
+    border: 3px #dddddd solid;
+    box-shadow: 5px 5px 5px 5px #eaeaea, 5px -5px 5px 5px #eaeaea;
+    box-sizing: border-box;
+}
+
+.left-container, .right-container{
+    height: 40vh;
+}
+
+.left-container, .left-little-container{
+    margin-right: 25px;
+}
+
+.left-little-container{
+    width: 47%;
+    height: 20vh;
+}
+
+button{
+    align-self: flex-end;
+}
+
+p{
+    height: 95%;
+}
