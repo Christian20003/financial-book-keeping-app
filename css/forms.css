@@ -4,7 +4,7 @@
     margin-top: 50px;
     margin-bottom: 40px;
     padding: 15px;
-    font-size: 18pt;
+    font-size: 14pt;
     border: none;
     border-top-left-radius: 0.3cm;
     border-top-right-radius: 0.3cm;
@@ -21,7 +21,7 @@
 .placeholder{
     position: absolute;
     display: flex;
-    font-size: 15pt;
+    font-size: 11pt;
     left: 50px;
     opacity: 0.4;
     pointer-events: none;

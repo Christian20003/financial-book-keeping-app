@@ -11,7 +11,7 @@
     border: none;
     background-color: white;
     font-family: "Ubuntu", "Sans";
-    font-size: 24pt;
+    font-size: 20pt;
     text-decoration: underline;
     transition: transform 1s, background-color 1s, clip-path 1s;
     clip-path: polygon(0 0, 100% 0, 100% 100%, 50% 75%, 0 100%);
