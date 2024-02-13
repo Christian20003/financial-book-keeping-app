@@ -29,15 +29,14 @@ section{
 }
 
 .left-container, .right-container{
-    height: 40vh;
+    height: 36vh;
 }
 
 .left-container, .left-little-container{
     margin-right: 25px;
 }
 
-.left-little-container{
-    width: 47%;
+.left-little-container, .right-little-container{
     height: 20vh;
 }
 
@@ -45,6 +44,10 @@ button{
     align-self: flex-end;
 }
 
-p{
+.placeholder{
     height: 95%;
+}
+
+.message-container{
+    display: flex;
 }

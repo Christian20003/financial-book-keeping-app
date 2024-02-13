@@ -22,7 +22,7 @@ nav{
 .start-link a{
     color: var(--main-color);
     text-decoration: none;
-    padding-right: 100px;
+    padding-right: 20px;
 }
 
 .ref{
@@ -92,9 +92,9 @@ nav{
 
 .profile{
     display: flex;
+    flex-wrap: wrap;
     position: relative;
     float: right;
-    width: 250px;
     margin-right: 20px;
     margin-top: -15px;
     margin-bottom: -20px;
@@ -103,13 +103,18 @@ nav{
 
 .profile img{
     width: 75px;
+    height: 65px;
     border-radius: 50%;
-    float: right;
-    padding-top: 20px;
-    margin-top: -10px;
+    float: right;    
     transition: all 0.2s;
 }
 
 .profile img:hover{
     opacity: 0.5;
+}
+
+.profile p{
+    width: fit-content;
+    float: left;
+    padding-right: 15px;
 }
