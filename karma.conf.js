@@ -37,9 +37,14 @@ module.exports = function (config) {
     browsers: ['Firefox'],
     restartOnFileChange: true,
     customLaunchers: {
-       ChromeHeadlessCustom: {
+       'ChromeHeadlessCustom': {
           base: 'ChromeHeadless',
 	  flags: ['--no-sandbox', '--disable-gpu']
+       },
+       'FirefoxHeadless': {
+	  base: 'Firefox',
+	  flags: ['-headless'],
+	  prefs: {'network.proxy.type': 0}
        }
     },
   });
