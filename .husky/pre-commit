@@ -1,1 +1,2 @@
 npm run test:firefox
+npm run lint
