@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@use './styles/global/colors.scss' as colors;
+@use './styles/global/text.scss' as fonts;
+
+html{
+    background-color: colors.$main-background-color;
+    color: colors.$prim-highlight-text-color;
+    font-family: fonts.$primary-font-family;
+}
