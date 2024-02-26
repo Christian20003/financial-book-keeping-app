@@ -5,4 +5,14 @@ import { Component } from '@angular/core';
   templateUrl: './auth-overview.component.html',
   styleUrls: ['./auth-overview.component.scss'],
 })
-export class AuthOverviewComponent {}
+export class AuthOverviewComponent {
+  login = true;
+
+  onLogin() {
+    this.login = true;
+  }
+
+  onRegister() {
+    this.login = false;
+  }
+}

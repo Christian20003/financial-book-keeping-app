@@ -1,8 +1,11 @@
 $primary-font-family: 'Ubuntu', 'Ariel', 'Times';
+$header-font-size: 32pt;
+$text-font-size: 14;
+$highligh-font-size: 18pt;
 
 @mixin main-header{
     @media (min-width: 700px) {
-        font-size: 32pt;   
+        font-size: $header-font-size;   
     }
     text-align: center;
 }

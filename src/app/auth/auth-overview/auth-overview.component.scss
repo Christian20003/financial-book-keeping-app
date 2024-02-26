@@ -1,0 +1,72 @@
+@use '../../../styles/global/container.scss' as container;
+@use '../../../styles/global/text.scss' as text;
+@use '../../../styles/global//colors.scss' as colors;
+@use 'sass:math';
+
+
+$min-screen-width: 410px;
+$max-size: 400px;
+$grid-item-size: math.div($max-size, 2);
+
+/* Defines the grid-template-columns depending which item is selected. Makes the sliding animation possible */
+@mixin grid-column-template($left: false){
+    @if $left{
+        grid-template-columns: $grid-item-size auto; 
+    } @else {
+        grid-template-columns: auto $grid-item-size; 
+    }
+}
+
+.container{
+    @include container.card-container;
+
+    @media (min-width: $min-screen-width) {
+        width: $max-size;
+    }
+
+    width: fit-content;
+    margin: 0 auto;
+
+    .grid-container{
+        /* Defines the template according to the class assignment and the hover-/focus-effect */
+        @media (min-width: $min-screen-width) {
+            grid-auto-flow: column;
+            &:has(#login.inactive){
+                @include grid-column-template(false);
+            }
+            &:has(#register.inactive){
+                @include grid-column-template(true);
+            }
+            &:has(#register.inactive:is(:hover, :focus)){
+                grid-template-columns: 0% auto;
+            }
+            &:has(#login.inactive:is(:hover, :focus)){
+                grid-template-columns: auto 0%;
+                overflow: hidden;
+            }
+        } 
+        display: grid;
+        transition: all 0.5s;
+    }
+
+    #login, #register{
+        font-size: text.$highligh-font-size;
+        padding: 10px 20px;
+        font-family: text.$primary-font-family;
+        outline: none;
+        border: none;
+        border-radius: 3px 3px 0px 0px;
+        background-color: inherit;
+
+        &.inactive{
+            background-color: rgb(21, 21, 21);
+            color: colors.$prim-highlight-text-color;
+            transition: all 0.5s ease;
+        }
+
+        &.inactive:is(:hover, :focus){
+            background-color: colors.$prim-highlight-text-color;
+            color: colors.$main-text-color;
+        }
+    }
+}

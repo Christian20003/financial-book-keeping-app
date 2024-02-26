@@ -26,7 +26,7 @@ $max-screen-width: 800px;
     width: $size-large;
     height: $size-large;
     background-color: colors.$prim-highlight-text-color;
-    z-index: 1;
+    z-index: -1;
     box-shadow: container.$shadow-border-light-bg;
 }
 
@@ -41,6 +41,7 @@ $max-screen-width: 800px;
     width: $size-large;
     height: $size-large;
     background-color: colors.$sec-highlight-text-color;
+    z-index: -2;
     box-shadow: container.$shadow-border-dark-bg;
 }
 

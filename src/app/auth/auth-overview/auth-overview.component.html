@@ -1,0 +1,14 @@
+<div class="container">
+  <div class="grid-container">
+    <button id="login" [ngClass]="{ inactive: !login }" (click)="onLogin()">
+      Anmelden
+    </button>
+    <button
+      id="register"
+      [ngClass]="{ inactive: login }"
+      (click)="onRegister()">
+      Registrieren
+    </button>
+  </div>
+  <p>Weitere Content</p>
+</div>
