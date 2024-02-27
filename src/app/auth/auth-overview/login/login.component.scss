@@ -1,6 +1,6 @@
-@use '../../../../styles/global/text.scss';
-@use '../../../../styles/global/button.scss';
-@use '../../../../styles/global/container.scss';
+@use '../../../shared/styles/text.scss';
+@use '../../../shared/styles/button.scss';
+@use '../../../shared/styles/container.scss';
 
 #login-form{
     display: grid;
@@ -19,7 +19,7 @@
             @include container.label-container($font-size: text.$text-font-size);
         }
 
-        #email:where(:focus, .ng-dirty) ~ #label-email, #password:where(:focus, .ng-dirty):focus ~ #label-password{
+        #email:where(:focus, .ng-dirty) ~ #label-email, #password:where(:focus, .ng-dirty) ~ #label-password{
             @media (min-width: 410px) {
                 transform: translate(50%, -60%);
             }

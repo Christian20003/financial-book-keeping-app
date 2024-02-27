@@ -65,7 +65,7 @@
   <div class="relative-container">
     <div
       class="missing"
-      *ngIf="password?.valid && password?.touched"
+      *ngIf="!password?.valid && password?.touched"
       [@missingEffect]>
       <app-invalid-input [message]="text.password.missing"></app-invalid-input>
     </div>

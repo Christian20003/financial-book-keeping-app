@@ -1,6 +1,6 @@
-@use '../styles/global/text.scss' as text;
-@use '../styles/global/colors.scss' as colors;
-@use '../styles/global/container.scss' as container;
+@use './shared/styles/text.scss' as text;
+@use './shared/styles/colors.scss' as colors;
+@use './shared/styles/container.scss' as container;
 
 #title{
     @include text.main-header;
