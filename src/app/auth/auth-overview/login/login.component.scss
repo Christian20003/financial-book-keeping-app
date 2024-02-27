@@ -1,0 +1,44 @@
+@use '../../../../styles/global/text.scss';
+@use '../../../../styles/global/button.scss';
+@use '../../../../styles/global/container.scss';
+
+#login-form{
+    display: grid;
+    gap: 30px;
+    margin-top: 30px;
+
+    .relative-container{
+        position: relative;
+
+        .input{
+            width: 92%;
+            @include container.input-container($font-size: text.$text-font-size);
+        }
+
+        #label-email, #label-password{
+            @include container.label-container($font-size: text.$text-font-size);
+        }
+
+        #email:where(:focus, .ng-dirty) ~ #label-email, #password:where(:focus, .ng-dirty):focus ~ #label-password{
+            @media (min-width: 410px) {
+                transform: translate(50%, -60%);
+            }
+           transform: translate(0, -60%);
+        }
+
+        .icon{
+            @include container.svg-label-container();
+        }
+
+        .missing{
+            position: absolute;
+            margin: -20px 0px;
+            font-size: 10pt;
+        }
+
+    }
+
+    #login-button{
+        @include button.button($font-size: text.$text-font-size);
+    }
+}

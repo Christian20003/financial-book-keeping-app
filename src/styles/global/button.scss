@@ -1,0 +1,24 @@
+@use './colors.scss';
+
+@mixin button ($font-size: 14pt){
+    font-size: $font-size;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: colors.$content-background-color;
+    color: colors.$prim-highlight-text-color;
+    border-radius: 0cm;
+    border-color: colors.$prim-highlight-text-color;
+    outline: none;
+    transition: all 0.5s;
+
+    &:where(:hover, :focus){
+        transform: translateY(-10px);
+        background-color: colors.$prim-highlight-text-color;
+        color: colors.$content-background-color;
+        box-shadow: 10px 10px rgb(38, 38, 38);
+    }
+
+    &:active{
+        background-color: colors.$prim-dark-highlight-text-color;
+    }
+}

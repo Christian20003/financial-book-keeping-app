@@ -10,5 +10,12 @@
       Registrieren
     </button>
   </div>
-  <p>Weitere Content</p>
+  <div class="overlap-grid-container">
+    <div *ngIf="login" [@slideLeft] class="auth-content">
+      <app-login></app-login>
+    </div>
+    <div *ngIf="!login" [@slideRight] class="auth-content">
+      <app-register></app-register>
+    </div>
+  </div>
 </div>

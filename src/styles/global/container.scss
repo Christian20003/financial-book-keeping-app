@@ -7,5 +7,41 @@ $shadow-border-dark-bg: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0
     color: colors.$main-text-color;
     background-color: colors.$content-background-color;
     border-radius: 5px;
-    box-shadow: $shadow-border-dark-bg;
+    /* box-shadow: $shadow-border-dark-bg; */
+}
+
+@mixin input-container ($font-size: 14pt){
+    font-size: $font-size;
+    border: none;
+    outline: none;
+    padding: 15px;
+    border-radius: 3px 3px 0px 0px;
+    border-bottom: 3px colors.$main-background-color solid;
+    transition: border-color 0.5s ease-out;
+    /* background-color: #c1c4c3; */
+
+    &:focus{
+        border-color: colors.$prim-highlight-text-color;
+    }
+}
+
+@mixin label-container ($font-size: 14pt, $left: 0px, $top: 0px){
+    display: flex;
+    position: absolute;
+    font-size: $font-size;
+    left: $left;
+    top: $top;
+    opacity: 0.4;
+    pointer-events: none;
+    transition: all 0.5s;
+}
+
+@mixin svg-label-container ($width: 40px, $isStroke: true, $stroke: colors.$main-background-color, $fill: colors.$main-background-color){
+    width: $width;
+    margin-right: 15px;
+    @if $isStroke {
+        stroke: $stroke;
+    } @else {
+        fill: $fill;
+    }
 }

@@ -59,7 +59,7 @@ $grid-item-size: math.div($max-size, 2);
         background-color: inherit;
 
         &.inactive{
-            background-color: rgb(21, 21, 21);
+            background-color: colors.$main-background-color;
             color: colors.$prim-highlight-text-color;
             transition: all 0.5s ease;
         }
@@ -67,6 +67,16 @@ $grid-item-size: math.div($max-size, 2);
         &.inactive:is(:hover, :focus){
             background-color: colors.$prim-highlight-text-color;
             color: colors.$main-text-color;
+        }
+    }
+
+    .overlap-grid-container{
+        display: grid;
+
+        .auth-content{
+            padding: 10px 20px;
+            grid-column-start: 1;
+            grid-row-start: 1;
         }
     }
 }
