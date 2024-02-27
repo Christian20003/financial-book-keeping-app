@@ -16,22 +16,31 @@
         }
 
         #label-email, #label-password{
-            @include container.label-container($font-size: text.$text-font-size);
+            @include container.label-container($font-size: text.$minimal-font-size, $top: 8px);
         }
 
         #email:where(:focus, .ng-dirty) ~ #label-email, #password:where(:focus, .ng-dirty) ~ #label-password{
             @media (min-width: 410px) {
-                transform: translate(50%, -60%);
+                transform: translate(70%, -50%);
             }
-           transform: translate(0, -60%);
+           transform: translate(0, -50%);
         }
 
         .icon{
             @include container.svg-label-container();
         }
 
-        .missing{
+        .missing, #error-msg, #loading{
             position: absolute;
+        }
+
+        #loading{
+            left: 50%;
+            bottom: 0;
+            transform: translate(-50%, 0);
+        }
+
+        .missing{
             margin: -20px 0px;
             font-size: 10pt;
         }

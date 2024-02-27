@@ -8,7 +8,7 @@ import { slideIn, slideOut } from 'src/app/shared/animations/slideLeftRight';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   animations: [
-    trigger('missingEffect', [
+    trigger('slideEffect', [
       transition(':enter', [
         useAnimation(slideIn, {
           params: {
@@ -46,7 +46,11 @@ export class LoginComponent {
       missing: 'Bitte ein Passwort eingeben',
     },
     login: 'Anmelden',
+    errorMsg: 'Es ist leider ein unerwarteter Fehler aufgetreten',
   };
+
+  error = false;
+  loading = false;
 
   get email() {
     return this.loginForm.get('email');
@@ -58,5 +62,11 @@ export class LoginComponent {
 
   onSubmit() {
     /* TODO: */
+    this.error = false;
+    this.loading = true;
+    setTimeout(() => {
+      this.loading = false;
+      this.error = true;
+    }, 8000);
   }
 }

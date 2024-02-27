@@ -1,24 +1,26 @@
 @use './colors.scss';
 
-@mixin button ($font-size: 14pt){
+@mixin button ($font-size: 14pt, $padding: 15px, $width: inherit, $color: colors.$prim-highlight-text-color, $border-color: colors.$prim-highlight-text-color, $bg-color: colors.$content-background-color, $color-act: colors.$prim-dark-highlight-text-color){
     font-size: $font-size;
-    padding: 15px;
+    width: $width;
+    padding: $padding;
     margin-bottom: 20px;
-    background-color: colors.$content-background-color;
-    color: colors.$prim-highlight-text-color;
+    background-color: $bg-color;
+    color: $color;
     border-radius: 0cm;
-    border-color: colors.$prim-highlight-text-color;
+    border-color: $border-color;
     outline: none;
-    transition: all 0.5s;
+    cursor: pointer;
+    transition: all 0.5s, background-color 0.1s;
 
     &:where(:hover, :focus){
         transform: translateY(-10px);
-        background-color: colors.$prim-highlight-text-color;
-        color: colors.$content-background-color;
+        background-color: $color;
+        color: $bg-color;
         box-shadow: 10px 10px rgb(38, 38, 38);
     }
 
     &:active{
-        background-color: colors.$prim-dark-highlight-text-color;
+        background-color: $color-act;
     }
 }

@@ -1,0 +1,14 @@
+@use '../../styles/colors.scss';
+@use '../../styles/container.scss';
+
+#error-container{
+    color: colors.$sec-text-color;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: container.$shadow-border-light-bg;
+
+    #text-container{
+        background-color: colors.$error-highlight-color;
+        padding: 5px;
+    }
+}

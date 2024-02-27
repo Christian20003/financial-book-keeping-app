@@ -6,6 +6,8 @@ import { LoginComponent } from './auth-overview/login/login.component';
 import { RegisterComponent } from './auth-overview/register/register.component';
 import { InvalidInputComponent } from '../shared/components/invalid-input/invalid-input.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SmallErrorMsgComponent } from '../shared/components/small-error-msg/small-error-msg.component';
+import { LoadingComponent } from '../shared/components/loading/loading.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +15,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     LoginComponent,
     RegisterComponent,
     InvalidInputComponent,
+    SmallErrorMsgComponent,
+    LoadingComponent,
   ],
   imports: [CommonModule, BrowserAnimationsModule, ReactiveFormsModule],
   exports: [AuthOverviewComponent],

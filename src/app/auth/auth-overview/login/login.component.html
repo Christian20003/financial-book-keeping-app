@@ -28,13 +28,13 @@
     <div
       class="missing"
       *ngIf="email?.errors?.['required'] && email?.touched"
-      [@missingEffect]>
+      [@slideEffect]>
       <app-invalid-input [message]="text.email.missing"></app-invalid-input>
     </div>
     <div
       class="missing"
       *ngIf="email?.errors?.['email'] && email?.touched"
-      [@missingEffect]>
+      [@slideEffect]>
       <app-invalid-input [message]="text.email.invalid"></app-invalid-input>
     </div>
   </div>
@@ -66,9 +66,17 @@
     <div
       class="missing"
       *ngIf="!password?.valid && password?.touched"
-      [@missingEffect]>
+      [@slideEffect]>
       <app-invalid-input [message]="text.password.missing"></app-invalid-input>
     </div>
   </div>
   <button id="login-button">{{ text.login }}</button>
+  <div class="relative-container">
+    <div id="loading" *ngIf="loading" [@slideEffect]>
+      <app-loading></app-loading>
+    </div>
+    <div id="error-msg" *ngIf="error" [@slideEffect]>
+      <app-small-error-msg [message]="text.errorMsg"></app-small-error-msg>
+    </div>
+  </div>
 </form>

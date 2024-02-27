@@ -55,6 +55,7 @@ $grid-item-size: math.div($max-size, 2);
         font-family: text.$primary-font-family;
         outline: none;
         border: none;
+        cursor: pointer;
         border-radius: 3px 3px 0px 0px;
         background-color: inherit;
 
