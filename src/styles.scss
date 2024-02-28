@@ -3,7 +3,7 @@
 @use './app/shared/styles/text.scss';
 
 html{
-    background-color: colors.$main-background-color;
-    color: colors.$prim-highlight-text-color;
-    font-family: text.$primary-font-family;
+    background-color: colors.$very-dark-gray;
+    color: colors.$moderate-red;
+    font-family: text.$font-family;
 }

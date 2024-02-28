@@ -3,32 +3,36 @@
 $shadow-border-light-bg: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 $shadow-border-dark-bg: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
 
-@mixin card-container{
-    color: colors.$main-text-color;
-    background-color: colors.$content-background-color;
-    border-radius: 5px;
-    /* box-shadow: $shadow-border-dark-bg; */
+$default-border-radius: 0.3rem;
+
+// This mixin defines a simple container for abitrary content
+@mixin card-container (){
+    background-color: colors.$white;
+    border-radius: $default-border-radius;
+    box-shadow: $shadow-border-light-bg;
 }
 
-@mixin input-container ($font-size: 14pt){
-    font-size: $font-size;
-    border: none;
-    outline: none;
+// This mixin defines a simple container for an input element
+@mixin input-container (){
     padding: 15px;
-    border-radius: 3px 3px 0px 0px;
-    border-bottom: 3px colors.$main-background-color solid;
+    outline: none;
+    border: none;
+    border-bottom: 3px colors.$very-dark-gray solid;
     transition: border-color 0.5s ease-out;
-    /* background-color: #c1c4c3; */
 
     &:focus{
-        border-color: colors.$prim-highlight-text-color;
+        border-color: colors.$moderate-red;
     }
 }
 
-@mixin label-container ($font-size: 14pt, $left: 0px, $top: 0px){
+/* 
+    This mixin defines a simple container for an label element 
+    $left   - margin to the left
+    $top    - margin to the top  
+*/
+@mixin label-container ($left: 0, $top: 0){
     display: flex;
     position: absolute;
-    font-size: $font-size;
     left: $left;
     top: $top;
     opacity: 0.4;
@@ -36,12 +40,15 @@ $shadow-border-dark-bg: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0
     transition: all 0.5s;
 }
 
-@mixin svg-label-container ($width: 35px, $isStroke: true, $stroke: colors.$main-background-color, $fill: colors.$main-background-color){
+/*
+    This mixin defines a simple container for an SVG-element
+    $width      - defines the width of the SVG
+    $stroke     - the color for the stroke
+    $fill       - the color for the interior
+*/
+@mixin svg-label-container ($width: 35px, $stroke: colors.$very-dark-gray, $fill: none){
     width: $width;
     margin-right: 15px;
-    @if $isStroke {
-        stroke: $stroke;
-    } @else {
-        fill: $fill;
-    }
+    stroke: $stroke;
+    fill: $fill;
 }

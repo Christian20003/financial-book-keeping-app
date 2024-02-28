@@ -3,10 +3,10 @@
 @use './shared/styles/container.scss' as container;
 
 #title{
-    @include text.main-header;
+    @include text.header();
 }
 
-$max-screen-width: 800px;
+$max-screen-width: 60rem;
 
 .small-shape-bottom, .large-shape-bottom{
     position: fixed;
@@ -16,8 +16,8 @@ $max-screen-width: 800px;
 }
 
 .small-shape-bottom, .small-shape-left{
-    $size-large: 320px;
-    $size-small: 220px;
+    $size-large: 20rem;
+    $size-small: 15rem;
 
     @media (max-width: $max-screen-width) {
         width: $size-small;
@@ -25,14 +25,14 @@ $max-screen-width: 800px;
     }
     width: $size-large;
     height: $size-large;
-    background-color: colors.$prim-highlight-text-color;
+    background-color: colors.$moderate-red;
     z-index: -1;
     box-shadow: container.$shadow-border-light-bg;
 }
 
 .large-shape-bottom, .large-shape-left{
-    $size-large: 420px;
-    $size-small: 320px;
+    $size-large: 25rem;
+    $size-small: 20rem;
 
     @media (max-width: $max-screen-width) {
         width: $size-small;
@@ -40,7 +40,7 @@ $max-screen-width: 800px;
     }
     width: $size-large;
     height: $size-large;
-    background-color: colors.$sec-highlight-text-color;
+    background-color: colors.$lime-green;
     z-index: -2;
     box-shadow: container.$shadow-border-dark-bg;
 }

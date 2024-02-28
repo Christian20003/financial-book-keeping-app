@@ -1,29 +1,37 @@
 @use '../../../shared/styles/text.scss';
 @use '../../../shared/styles/button.scss';
 @use '../../../shared/styles/container.scss';
+@use '../../../shared/styles/colors.scss';
+
+$desktop-screen-width: 26rem;
 
 #login-form{
     display: grid;
-    gap: 30px;
-    margin-top: 30px;
+    gap: 2rem;
+    margin-top: 1.5rem;
 
     .relative-container{
         position: relative;
 
         .input{
-            width: 92%;
-            @include container.input-container($font-size: text.$text-font-size);
+            @include container.input-container();
+            @include text.description();
         }
 
         #label-email, #label-password{
-            @include container.label-container($font-size: text.$minimal-font-size, $top: 8px);
+            @include container.label-container($top: 8px);
+            @include text.label();
         }
 
-        #email:where(:focus, .ng-dirty) ~ #label-email, #password:where(:focus, .ng-dirty) ~ #label-password{
-            @media (min-width: 410px) {
-                transform: translate(70%, -50%);
+        // Enables the moving-up animations for the labels
+        #email:where(:focus, .ng-dirty) ~ #label-email, 
+        #password:where(:focus, .ng-dirty) ~ #label-password{
+            $moveX: 50%;
+            $moveY: -58%;
+            @media (min-width: $desktop-screen-width) {
+                transform: translate($moveX, $moveY);
             }
-           transform: translate(0, -50%);
+           transform: translate(0, $moveY);
         }
 
         .icon{
@@ -34,6 +42,7 @@
             position: absolute;
         }
 
+        // TODO: Adjust loading screen styling
         #loading{
             left: 50%;
             bottom: 0;
@@ -41,13 +50,14 @@
         }
 
         .missing{
-            margin: -20px 0px;
-            font-size: 10pt;
+            margin: -2rem 0;
         }
 
     }
 
     #login-button{
-        @include button.button($font-size: text.$text-font-size);
+        @include button.button();
+        @include text.description($align: center, $color: colors.$moderate-red);
+        padding: 1rem 2rem;
     }
 }

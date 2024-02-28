@@ -1,11 +1,12 @@
 @use '../../styles/container.scss';
 @use '../../styles/colors.scss';
+@use '../../styles/text.scss';
 
 #invalid-content-container{
     display: flex;
-    color: colors.$error-highlight-color
+    @include text.label($color: colors.$soft-red);
 }
 
 #icon{
-    @include container.svg-label-container($width: 25px, $isStroke: false, $fill: colors.$error-highlight-color);
+    @include container.svg-label-container($width: 1.5rem, $fill: colors.$soft-red, $stroke: none);
 }

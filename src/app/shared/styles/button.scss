@@ -1,14 +1,9 @@
 @use './colors.scss';
 
-@mixin button ($font-size: 14pt, $padding: 15px, $width: inherit, $color: colors.$prim-highlight-text-color, $border-color: colors.$prim-highlight-text-color, $bg-color: colors.$content-background-color, $color-act: colors.$prim-dark-highlight-text-color){
-    font-size: $font-size;
-    width: $width;
-    padding: $padding;
-    margin-bottom: 20px;
+@mixin button ($color: colors.$moderate-red, $bg-color: colors.$white, $color-active: colors.$vivid-red){
     background-color: $bg-color;
     color: $color;
-    border-radius: 0cm;
-    border-color: $border-color;
+    border-color: $color;
     outline: none;
     cursor: pointer;
     transition: all 0.5s, background-color 0.1s;
@@ -21,6 +16,6 @@
     }
 
     &:active{
-        background-color: $color-act;
+        background-color: $color-active;
     }
 }

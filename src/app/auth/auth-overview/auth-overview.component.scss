@@ -1,15 +1,13 @@
 @use '../../shared/styles/container.scss';
 @use '../../shared/styles/text.scss';
 @use '../../shared/styles/colors.scss';
-@use 'sass:math';
 
 
-$min-screen-width: 410px;
-$max-size: 400px;
-$grid-item-size: math.div($max-size, 2);
+$desktop-screen-width: 26rem;
 
 /* Defines the grid-template-columns depending which item is selected. Makes the sliding animation possible */
 @mixin grid-column-template($left: false){
+    $grid-item-size: 47%;
     @if $left{
         grid-template-columns: $grid-item-size auto; 
     } @else {
@@ -18,56 +16,34 @@ $grid-item-size: math.div($max-size, 2);
 }
 
 .container{
-    @include container.card-container;
-
-    @media (min-width: $min-screen-width) {
-        width: $max-size;
-    }
+    @include container.card-container();
 
     width: fit-content;
     margin: 0 auto;
 
     .grid-container{
-        /* Defines the template according to the class assignment and the hover-/focus-effect */
-        @media (min-width: $min-screen-width) {
-            grid-auto-flow: column;
-            &:has(#login.inactive){
-                @include grid-column-template(false);
-            }
-            &:has(#register.inactive){
-                @include grid-column-template(true);
-            }
-            &:has(#register.inactive:is(:hover, :focus)){
-                grid-template-columns: 0% auto;
-            }
-            &:has(#login.inactive:is(:hover, :focus)){
-                grid-template-columns: auto 0%;
-                overflow: hidden;
-            }
-        } 
         display: grid;
         transition: all 0.5s;
     }
 
     #login, #register{
-        font-size: text.$highligh-font-size;
-        padding: 10px 20px;
-        font-family: text.$primary-font-family;
+        @include text.description();
+        padding: 1rem 2rem;
         outline: none;
         border: none;
         cursor: pointer;
-        border-radius: 3px 3px 0px 0px;
+        border-radius: container.$default-border-radius - 0.1rem;
         background-color: inherit;
 
         &.inactive{
-            background-color: colors.$main-background-color;
-            color: colors.$prim-highlight-text-color;
-            transition: all 0.5s ease;
+            background-color: colors.$very-dark-gray;
+            color: colors.$moderate-red;
+            transition: all 0.5s;
         }
 
         &.inactive:is(:hover, :focus){
-            background-color: colors.$prim-highlight-text-color;
-            color: colors.$main-text-color;
+            background-color: colors.$moderate-red;
+            color: colors.$white;
         }
     }
 
@@ -75,9 +51,29 @@ $grid-item-size: math.div($max-size, 2);
         display: grid;
 
         .auth-content{
-            padding: 10px 20px;
+            padding: 1rem 2rem;
             grid-column-start: 1;
             grid-row-start: 1;
         }
     }
 }
+
+/* Defines the template according to the class assignment and the hover-/focus-effect */
+@media (min-width: $desktop-screen-width) {
+    .grid-container{
+        grid-auto-flow: column;
+        &:has(#login.inactive){
+            @include grid-column-template(false);
+        }
+        &:has(#register.inactive){
+            @include grid-column-template(true);
+        }
+        &:has(#register.inactive:is(:hover, :focus)){
+            grid-template-columns: 0% auto;
+        }
+        &:has(#login.inactive:is(:hover, :focus)){
+            grid-template-columns: auto 0%;
+            overflow: hidden;
+        }
+    }
+} 
