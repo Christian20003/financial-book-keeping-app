@@ -5,9 +5,10 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { AuthentifizierungComponent } from './authentifizierung/authentifizierung.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, AuthentifizierungComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
