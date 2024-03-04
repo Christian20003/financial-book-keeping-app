@@ -1,5 +1,5 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { slideIn, slideOut } from 'src/app/shared/animations/slideLeftRight';
 
@@ -29,11 +29,8 @@ import { slideIn, slideOut } from 'src/app/shared/animations/slideLeftRight';
     ]),
   ],
 })
-export class LoginComponent {
-  loginForm = new FormGroup({
-    email: new FormControl(null, [Validators.required, Validators.email]),
-    password: new FormControl(null, Validators.required),
-  });
+export class LoginComponent implements OnInit {
+  loginForm!: FormGroup;
 
   text = {
     email: {
@@ -52,6 +49,13 @@ export class LoginComponent {
   error = false;
   loading = false;
 
+  ngOnInit(): void {
+    this.loginForm = new FormGroup({
+      email: new FormControl(null, [Validators.required, Validators.email]),
+      password: new FormControl(null, Validators.required),
+    });
+  }
+
   get email() {
     return this.loginForm.get('email');
   }
@@ -60,8 +64,8 @@ export class LoginComponent {
     return this.loginForm.get('password');
   }
 
+  /* TODO: Add the HTTP-Request to the backend */
   onSubmit() {
-    /* TODO: */
     this.error = false;
     this.loading = true;
     setTimeout(() => {
