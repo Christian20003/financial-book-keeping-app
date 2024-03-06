@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from './auth/auth.module';
+import { userReducer } from './shared/stores/UserStore/User.reducer';
+import { userEffects } from './shared/stores/UserStore/User.effects';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,8 +15,8 @@ import { AuthModule } from './auth/auth.module';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
-    StoreModule.forRoot({}, {}),
-    EffectsModule.forRoot([]),
+    StoreModule.forRoot({ user: userReducer }, {}),
+    EffectsModule.forRoot([userEffects]),
   ],
   providers: [],
   bootstrap: [AppComponent],
