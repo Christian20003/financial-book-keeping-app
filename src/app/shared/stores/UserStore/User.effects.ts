@@ -3,17 +3,17 @@ import { Actions, createEffect, ofType, concatLatestFrom } from '@ngrx/effects';
 import { Store } from '@ngrx/store';
 import { of, switchMap, tap } from 'rxjs';
 import { loadUserSession, setUser, setUserSession } from './User.actions';
-import { userSelector } from './User.selector';
-import { User } from '../../classes/User';
+import { selectUser } from './User.selector';
+import { initialState } from './User.reducer';
 
 @Injectable()
 export class userEffects {
   // Save the user object on local storage after initialization
-  saveUserData = createEffect(
+  saveUserData$ = createEffect(
     () => {
       return this.actions$.pipe(
         ofType(setUser, setUserSession),
-        concatLatestFrom(() => this.store.select(userSelector)),
+        concatLatestFrom(() => this.store.select(selectUser)),
         tap(([, value]) => {
           localStorage.setItem('user', JSON.stringify(value));
         })
@@ -23,7 +23,7 @@ export class userEffects {
   );
 
   // Load the last saved user object from local storage
-  loadUserData = createEffect(() => {
+  loadUserData$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(loadUserSession),
       switchMap(() => {
@@ -32,13 +32,13 @@ export class userEffects {
           return of(setUser({ user: JSON.parse(userObj) }));
         }
         // If no object was found, create new default object
-        return of(setUser({ user: new User() }));
+        return of(setUser({ user: initialState }));
       })
     );
   });
 
   constructor(
     private actions$: Actions,
-    private store: Store<User>
+    private store: Store
   ) {}
 }
