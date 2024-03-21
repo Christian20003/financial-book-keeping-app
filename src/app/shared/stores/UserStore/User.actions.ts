@@ -19,6 +19,16 @@ export const setUserName = createAction(
 );
 
 /**
+ * This action can be used to change the email address of the {@link User} object.
+ *
+ * @param email - The new email of the user.
+ */
+export const setEmail = createAction(
+  '[User] Set email',
+  props<{ email: string }>()
+);
+
+/**
  * This action can be used to change the image path (profile image) of the {@link User} object.
  *
  * @param imagePath - The new image path.

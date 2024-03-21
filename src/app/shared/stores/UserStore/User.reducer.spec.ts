@@ -1,0 +1,64 @@
+import {
+  setEmail,
+  setUser,
+  setUserImagePath,
+  setUserName,
+  setUserSession,
+} from './User.actions';
+import { initialState, userReducer } from './User.reducer';
+
+describe('User-Store Reducer - Unit Tests', () => {
+  const newState = {
+    id: 5,
+    name: 'Max',
+    email: 'max-mustermann@gmail.com',
+    imagePath: 'example.com',
+    session: {
+      token: 'abcdefg',
+      expire: 200,
+    },
+  };
+
+  it('U-Test: setUser should set the value of the store', () => {
+    const action = setUser({ user: newState });
+    const state = userReducer(initialState, action);
+
+    expect(state).toEqual(newState);
+    expect(state).not.toBe(initialState);
+  });
+
+  it('U-Test: setUserName should set the name attribut', () => {
+    const action = setUserName({ name: newState.name });
+    const state = userReducer(initialState, action);
+
+    expect(state.name).toBe(newState.name);
+  });
+
+  it('U-Test: setUserImagePath should set the imagePath attribut', () => {
+    const action = setUserImagePath({ imagePath: newState.imagePath });
+    const state = userReducer(initialState, action);
+
+    expect(state.imagePath).toBe(newState.imagePath);
+  });
+
+  it('U-Test: setEmail should set the email attribut', () => {
+    const action = setEmail({ email: newState.email });
+    const state = userReducer(initialState, action);
+
+    expect(state.email).toBe(newState.email);
+  });
+
+  it('U-Test: setUserSession should set the session attribut', () => {
+    const action = setUserSession({ session: newState.session });
+    const state = userReducer(initialState, action);
+
+    expect(state.session).toBe(newState.session);
+  });
+
+  it('U-Test: should ignore an unkown action', () => {
+    const action = { type: 'Unknown' };
+    const state = userReducer(initialState, action);
+
+    expect(state).toBe(initialState);
+  });
+});

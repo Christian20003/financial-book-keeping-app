@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  setEmail,
   setUser,
   setUserImagePath,
   setUserName,
@@ -51,6 +52,10 @@ export const userReducer = createReducer(
   on(setUser, (_, action): User => action.user),
   on(setUserName, (state, action): User => {
     state.name = action.name;
+    return state;
+  }),
+  on(setEmail, (state, action): User => {
+    state.email = action.email;
     return state;
   }),
   on(setUserImagePath, (state, action): User => {
