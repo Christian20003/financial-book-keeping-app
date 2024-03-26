@@ -1,6 +1,7 @@
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { Component } from '@angular/core';
 import { slideIn, slideOut } from 'src/app/shared/animations/slideLeftRight';
+import { loginData } from './login/login.component';
 
 @Component({
   selector: 'app-auth-overview',
@@ -47,6 +48,8 @@ import { slideIn, slideOut } from 'src/app/shared/animations/slideLeftRight';
 })
 export class AuthOverviewComponent {
   login = true;
+  waiting = false;
+  error = false;
 
   onLogin() {
     this.login = true;
@@ -54,5 +57,13 @@ export class AuthOverviewComponent {
 
   onRegister() {
     this.login = false;
+  }
+
+  onSubmit(data: loginData) {
+    this.waiting = true;
+    setTimeout(() => {
+      this.waiting = false;
+      this.error = true;
+    }, 5000);
   }
 }

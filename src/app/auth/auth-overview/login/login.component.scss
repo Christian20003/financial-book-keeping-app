@@ -38,18 +38,8 @@ $desktop-screen-width: 26rem;
             @include container.svg-label-container();
         }
 
-        .missing, #error-msg, #loading{
-            position: absolute;
-        }
-
-        // TODO: Adjust loading screen styling
-        #loading{
-            left: 50%;
-            bottom: 0;
-            transform: translate(-50%, 0);
-        }
-
         .missing{
+            position: absolute;
             margin: -2rem 0;
         }
 

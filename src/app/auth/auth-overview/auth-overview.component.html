@@ -12,10 +12,16 @@
   </div>
   <div class="overlap-grid-container">
     <div *ngIf="login" [@slideLeft] class="auth-content">
-      <app-login></app-login>
+      <app-login (login)="onSubmit($event)"></app-login>
     </div>
     <div *ngIf="!login" [@slideRight] class="auth-content">
       <app-register></app-register>
     </div>
+  </div>
+  <div id="loading" *ngIf="waiting">
+    <app-loading></app-loading>
+  </div>
+  <div id="error-msg" *ngIf="error">
+    <app-small-error-msg [message]="'sds'"></app-small-error-msg>
   </div>
 </div>

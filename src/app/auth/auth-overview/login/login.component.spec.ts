@@ -4,7 +4,6 @@ import { MockComponent } from 'ng-mocks';
 import { LoginComponent } from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { InvalidInputComponent } from 'src/app/shared/components/invalid-input/invalid-input.component';
-import { SmallErrorMsgComponent } from 'src/app/shared/components/small-error-msg/small-error-msg.component';
 import { By } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
@@ -22,11 +21,7 @@ describe('LoginComponent - Unit Tests', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        LoginComponent,
-        MockComponent(InvalidInputComponent),
-        MockComponent(SmallErrorMsgComponent),
-      ],
+      declarations: [LoginComponent, MockComponent(InvalidInputComponent)],
       imports: [ReactiveFormsModule, BrowserAnimationsModule],
     });
     fixture = TestBed.createComponent(LoginComponent);
@@ -187,9 +182,61 @@ describe('LoginComponent - Unit Tests', () => {
     expect(invalidComp).toBeFalsy();
   });
 
-  /* TODO: Missing unit test
-      - everything regarding with submit()
-  */
+  it('U-Test: Invalid form should not be submitted', () => {
+    const emailInput = getNativeElement<LoginComponent, HTMLInputElement>(
+      fixture,
+      '#email'
+    );
+    const passwordInput = getNativeElement<LoginComponent, HTMLInputElement>(
+      fixture,
+      '#password'
+    );
+    const loginButton = getNativeElement<LoginComponent, HTMLButtonElement>(
+      fixture,
+      '#login-button'
+    );
+    // Set invalid values and trigger corresponding events
+    emailInput.value = 'Test';
+    passwordInput.value = '';
+    execEvents([emailInput, passwordInput], ['input', 'blur']);
+    // Add spy to the emit() function
+    spyOn(component.login, 'emit');
+    loginButton.click();
+    fixture.detectChanges();
+
+    /* TESTS */
+
+    expect(component.loginForm.invalid).toBeTruthy();
+    expect(component.login.emit).not.toHaveBeenCalled();
+  });
+
+  it('U-Test: Valid form should be submitted', () => {
+    const emailInput = getNativeElement<LoginComponent, HTMLInputElement>(
+      fixture,
+      '#email'
+    );
+    const passwordInput = getNativeElement<LoginComponent, HTMLInputElement>(
+      fixture,
+      '#password'
+    );
+    const loginButton = getNativeElement<LoginComponent, HTMLButtonElement>(
+      fixture,
+      '#login-button'
+    );
+    // Set valid values and trigger corresponding events
+    emailInput.value = 'example@gmail.com';
+    passwordInput.value = 'examplePassword';
+    execEvents([emailInput, passwordInput], ['input', 'blur']);
+    // Add spy to the emit() function
+    spyOn(component.login, 'emit');
+    loginButton.click();
+    fixture.detectChanges();
+
+    /* TESTS */
+
+    expect(component.loginForm.valid).toBeTruthy();
+    expect(component.login.emit).toHaveBeenCalled();
+  });
 });
 
 /*################################################################################################################################ 
@@ -202,11 +249,7 @@ describe('LoginComponent - Integration Tests', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        LoginComponent,
-        InvalidInputComponent,
-        SmallErrorMsgComponent,
-      ],
+      declarations: [LoginComponent, InvalidInputComponent],
       imports: [ReactiveFormsModule, BrowserAnimationsModule],
     });
     fixture = TestBed.createComponent(LoginComponent);
@@ -279,6 +322,4 @@ describe('LoginComponent - Integration Tests', () => {
     // Component with 'invalid message' should exist
     expect(invalidComp.componentInstance.message).toBe('Missing password');
   });
-
-  // TODO: Missing integration tests (regarding submit())
 });

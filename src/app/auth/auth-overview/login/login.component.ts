@@ -1,7 +1,12 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { slideIn, slideOut } from 'src/app/shared/animations/slideLeftRight';
+
+export interface loginData {
+  email: string;
+  password: string;
+}
 
 @Component({
   selector: 'app-login',
@@ -30,6 +35,8 @@ import { slideIn, slideOut } from 'src/app/shared/animations/slideLeftRight';
   ],
 })
 export class LoginComponent implements OnInit {
+  @Output() login = new EventEmitter<loginData>();
+
   loginForm!: FormGroup;
 
   text = {
@@ -46,9 +53,6 @@ export class LoginComponent implements OnInit {
     errorMsg: 'Es ist leider ein unerwarteter Fehler aufgetreten',
   };
 
-  error = false;
-  loading = false;
-
   ngOnInit(): void {
     this.loginForm = new FormGroup({
       email: new FormControl(null, [Validators.required, Validators.email]),
@@ -64,13 +68,12 @@ export class LoginComponent implements OnInit {
     return this.loginForm.get('password');
   }
 
-  /* TODO: Add the HTTP-Request to the backend */
   onSubmit() {
-    this.error = false;
-    this.loading = true;
-    setTimeout(() => {
-      this.loading = false;
-      this.error = true;
-    }, 8000);
+    if (this.email?.valid && this.password?.valid) {
+      this.login.emit({
+        email: this.email.value,
+        password: this.password.value,
+      });
+    }
   }
 }

@@ -71,12 +71,4 @@
     </div>
   </div>
   <button id="login-button">{{ text.login }}</button>
-  <div class="relative-container">
-    <div id="loading" *ngIf="loading" [@slideEffect]>
-      <app-loading></app-loading>
-    </div>
-    <div id="error-msg" *ngIf="error" [@slideEffect]>
-      <app-small-error-msg [message]="text.errorMsg"></app-small-error-msg>
-    </div>
-  </div>
 </form>
