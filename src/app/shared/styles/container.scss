@@ -52,3 +52,19 @@ $default-border-radius: 0.3rem;
     stroke: $stroke;
     fill: $fill;
 }
+
+/*
+    This mixin defines a simple container which blurs the complete background
+    $blur               - the actual blur effect and its strength
+    $background-color   - the background color
+*/
+@mixin blur-container($blur: blur(0.3rem), $background-color: none){
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: 100%;
+    height: 100%;
+    backdrop-filter: $blur;
+    background-color: $background-color;
+}

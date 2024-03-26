@@ -1,52 +1,49 @@
 @use '../../styles/colors.scss';
+@use '../../styles/container.scss';
 
 @mixin icon-anim($delay){
     animation: growShrink 5s $delay infinite;
 }
 
-#bg-blur {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
-    width: 100%;
-    height: 100%;
-    backdrop-filter: blur(3px);
-    background-color: rgb(colors.$very-dark-gray, 0.5);
+$icon-size: 3.0rem;
+
+#blur-container{
+    @include container.blur-container($background-color: rgb(colors.$very-dark-gray, 0.5));
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
-#svg-container{
-    display: grid;
-    grid-auto-flow: column;
-    gap: 0.5rem;
-    width: fit-content; 
+    #svg-container{
+        display: grid;
+        grid-auto-flow: column;
+        gap: 0.5rem;
+        width: fit-content; 
 
-    .icon{
-        width: 2.5rem;
-        opacity: 0;
-    }
+        .icon{
+            width: $icon-size;
+            opacity: 0;
+        }
 
-    .yellow-circle{
-        fill: colors.$gold;
-    }
+        .yellow-circle{
+            fill: colors.$gold;
+        }
 
-    .white-circle, .white-rect{
-        fill: colors.$white;
-    }
+        .white-circle, .white-rect{
+            fill: colors.$white;
+        }
 
-    @for $i from 0 to 5 {
-        #icon-#{$i} {
-            @include icon-anim(#{$i}s);
+        // Add for every icon the animation
+        @for $i from 0 to 5 {
+            #icon-#{$i} {
+                @include icon-anim(#{$i}s);
+            }
         }
     }
 }
 
 @keyframes growShrink {
     from{ height: 0rem; }
-    25%{ height: 3.5rem; opacity: 1; }
-    75%{ height: 3.5rem; opacity: 1; }
+    25%{ height: $icon-size; opacity: 1; }
+    75%{ height: $icon-size; opacity: 1; }
     to{ height: 0rem; opacity: 0; }
 }

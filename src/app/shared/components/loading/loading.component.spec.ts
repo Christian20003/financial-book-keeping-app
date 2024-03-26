@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadingComponent } from './loading.component';
 
-describe('LoadingComponent', () => {
+describe('LoadingComponent - Unit-Tests', () => {
   let component: LoadingComponent;
   let fixture: ComponentFixture<LoadingComponent>;
 
@@ -15,7 +15,11 @@ describe('LoadingComponent', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('U-Test: Should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('U-Test: Should create five icons', () => {
+    expect(component.icons.length).toBe(5);
   });
 });

@@ -7,7 +7,7 @@ $desktop-screen-width: 26rem;
 
 /* Defines the grid-template-columns depending which item is selected. Makes the sliding animation possible */
 @mixin grid-column-template($left: false){
-    $grid-item-size: 47%;
+    $grid-item-size: 49%;
     @if $left{
         grid-template-columns: $grid-item-size auto; 
     } @else {
