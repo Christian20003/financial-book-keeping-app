@@ -2,11 +2,17 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
+import { StoreModule } from '@ngrx/store';
+import { userReducer } from './shared/stores/UserStore/User.reducer';
 
 describe('AppComponent', () => {
   beforeEach(() =>
     TestBed.configureTestingModule({
-      imports: [RouterTestingModule, AuthModule],
+      imports: [
+        RouterTestingModule,
+        AuthModule,
+        StoreModule.forRoot({ user: userReducer }, {}),
+      ],
       declarations: [AppComponent],
     })
   );

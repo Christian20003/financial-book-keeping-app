@@ -4,6 +4,9 @@ import { slideIn, slideOut } from 'src/app/shared/animations/slideLeftRight';
 import { loginData } from './login/login.component';
 import { Router } from '@angular/router';
 import { loginPath, registerPath } from '../auth-routing-module';
+import { AuthenticationService } from './authentication.service';
+import { Store } from '@ngrx/store';
+import { setUser } from 'src/app/shared/stores/UserStore/User.actions';
 
 @Component({
   selector: 'app-auth-overview',
@@ -50,9 +53,20 @@ import { loginPath, registerPath } from '../auth-routing-module';
 })
 export class AuthOverviewComponent {
   waiting = false;
-  error = false;
+  error = '';
 
-  constructor(private router: Router) {}
+  text = {
+    errorMessages: {
+      unknown: 'Es ist ein unerwarteter Fehler eingetreten.',
+      wrong: 'Die angegebenen Daten sind ungültig.',
+    },
+  };
+
+  constructor(
+    private router: Router,
+    private store: Store,
+    private authService: AuthenticationService
+  ) {}
 
   onLogin() {
     this.router.navigate([loginPath]);
@@ -67,10 +81,26 @@ export class AuthOverviewComponent {
   }
 
   onSubmit(data: loginData) {
+    this.error = '';
     this.waiting = true;
-    setTimeout(() => {
-      this.waiting = false;
-      this.error = true;
-    }, 5000);
+    this.authService.onPostLogin(data).subscribe({
+      next: response => {
+        this.store.dispatch(setUser({ user: response }));
+        this.waiting = false;
+        // TODO: Changes route
+        /* this.router.navigate(); */
+      },
+      error: error => {
+        this.waiting = false;
+        switch (error.status) {
+          case 401:
+            this.error = this.text.errorMessages.wrong;
+            break;
+          default:
+            this.error = this.text.errorMessages.unknown;
+            break;
+        }
+      },
+    });
   }
 }

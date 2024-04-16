@@ -9,6 +9,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SmallErrorMsgComponent } from '../shared/components/small-error-msg/small-error-msg.component';
 import { LoadingComponent } from '../shared/components/loading/loading.component';
 import { AuthRoutingModule } from './auth-routing-module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { AuthRoutingModule } from './auth-routing-module';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AuthRoutingModule,
+    HttpClientModule,
   ],
   exports: [AuthOverviewComponent],
 })
