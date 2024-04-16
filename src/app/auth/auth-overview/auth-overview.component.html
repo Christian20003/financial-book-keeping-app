@@ -1,20 +1,20 @@
 <div class="container">
   <div class="grid-container">
-    <button id="login" [ngClass]="{ inactive: !login }" (click)="onLogin()">
+    <button id="login" [ngClass]="{ inactive: !isLogin() }" (click)="onLogin()">
       Anmelden
     </button>
     <button
       id="register"
-      [ngClass]="{ inactive: login }"
+      [ngClass]="{ inactive: isLogin() }"
       (click)="onRegister()">
       Registrieren
     </button>
   </div>
   <div class="overlap-grid-container">
-    <div *ngIf="login" [@slideLeft] class="auth-content">
+    <div *ngIf="isLogin()" [@slideLeft] class="auth-content">
       <app-login (login)="onSubmit($event)"></app-login>
     </div>
-    <div *ngIf="!login" [@slideRight] class="auth-content">
+    <div *ngIf="!isLogin()" [@slideRight] class="auth-content">
       <app-register></app-register>
     </div>
   </div>

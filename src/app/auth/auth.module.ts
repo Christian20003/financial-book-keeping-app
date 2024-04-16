@@ -8,6 +8,7 @@ import { InvalidInputComponent } from '../shared/components/invalid-input/invali
 import { ReactiveFormsModule } from '@angular/forms';
 import { SmallErrorMsgComponent } from '../shared/components/small-error-msg/small-error-msg.component';
 import { LoadingComponent } from '../shared/components/loading/loading.component';
+import { AuthRoutingModule } from './auth-routing-module';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,12 @@ import { LoadingComponent } from '../shared/components/loading/loading.component
     SmallErrorMsgComponent,
     LoadingComponent,
   ],
-  imports: [CommonModule, BrowserAnimationsModule, ReactiveFormsModule],
+  imports: [
+    CommonModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    AuthRoutingModule,
+  ],
   exports: [AuthOverviewComponent],
 })
 export class AuthModule {}

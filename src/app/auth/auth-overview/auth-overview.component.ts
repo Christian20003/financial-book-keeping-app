@@ -2,6 +2,8 @@ import { trigger, transition, useAnimation } from '@angular/animations';
 import { Component } from '@angular/core';
 import { slideIn, slideOut } from 'src/app/shared/animations/slideLeftRight';
 import { loginData } from './login/login.component';
+import { Router } from '@angular/router';
+import { loginPath, registerPath } from '../auth-routing-module';
 
 @Component({
   selector: 'app-auth-overview',
@@ -47,16 +49,21 @@ import { loginData } from './login/login.component';
   ],
 })
 export class AuthOverviewComponent {
-  login = true;
   waiting = false;
   error = false;
 
+  constructor(private router: Router) {}
+
   onLogin() {
-    this.login = true;
+    this.router.navigate([loginPath]);
   }
 
   onRegister() {
-    this.login = false;
+    this.router.navigate([registerPath]);
+  }
+
+  isLogin() {
+    return this.router.url === '/' + loginPath;
   }
 
   onSubmit(data: loginData) {
