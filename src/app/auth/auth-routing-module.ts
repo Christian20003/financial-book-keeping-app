@@ -7,7 +7,7 @@ export const loginPath = 'login';
 export const registerPath = 'register';
 export const forgotPasswordPath = 'forgotPassword';
 
-const authRoutes: Routes = [
+export const authRoutes: Routes = [
   {
     path: loginPath,
     component: LoginComponent,

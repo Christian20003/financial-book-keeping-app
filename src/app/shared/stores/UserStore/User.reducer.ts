@@ -50,20 +50,32 @@ export const initialState: User = {
 export const userReducer = createReducer(
   initialState,
   on(setUser, (_, action): User => action.user),
-  on(setUserName, (state, action): User => {
-    state.name = action.name;
-    return state;
-  }),
-  on(setEmail, (state, action): User => {
-    state.email = action.email;
-    return state;
-  }),
-  on(setUserImagePath, (state, action): User => {
-    state.imagePath = action.imagePath;
-    return state;
-  }),
-  on(setUserSession, (state, action): User => {
-    state.session = action.session;
-    return state;
-  })
+  on(
+    setUserName,
+    (state, action): User => ({
+      ...state,
+      name: action.name,
+    })
+  ),
+  on(
+    setEmail,
+    (state, action): User => ({
+      ...state,
+      email: action.email,
+    })
+  ),
+  on(
+    setUserImagePath,
+    (state, action): User => ({
+      ...state,
+      imagePath: action.imagePath,
+    })
+  ),
+  on(
+    setUserSession,
+    (state, action): User => ({
+      ...state,
+      session: action.session,
+    })
+  )
 );
