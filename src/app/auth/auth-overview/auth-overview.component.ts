@@ -1,12 +1,11 @@
 import { trigger, transition, useAnimation } from '@angular/animations';
 import { Component } from '@angular/core';
-import { slideIn, slideOut } from 'src/app/shared/animations/slideLeftRight';
+import { slideIn, slideOut, setUser } from 'src/app/shared/index';
 import { loginData } from './login/login.component';
 import { Router } from '@angular/router';
 import { loginPath, registerPath } from '../auth-routing-module';
 import { AuthenticationService } from './authentication.service';
 import { Store } from '@ngrx/store';
-import { setUser } from 'src/app/shared/stores/UserStore/User.actions';
 
 @Component({
   selector: 'app-auth-overview',

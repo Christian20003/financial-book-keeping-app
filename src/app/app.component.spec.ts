@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { AuthModule } from './auth/auth.module';
 import { StoreModule } from '@ngrx/store';
-import { userReducer } from './shared/stores/UserStore/User.reducer';
+import { userReducer } from './shared/index';
 
 describe('AppComponent', () => {
   beforeEach(() =>

@@ -3,13 +3,13 @@ import { MockComponent } from 'ng-mocks';
 
 import { LoginComponent } from './login.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { InvalidInputComponent } from 'src/app/shared/components/invalid-input/invalid-input.component';
-import { By } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {
+  InvalidInputComponent,
   execEvents,
   getNativeElement,
-} from 'src/app/shared/testing/comp-help-functions';
+} from 'src/app/shared/index';
+import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 /*################################################################################################################################ 
                                                       UNIT-TESTS

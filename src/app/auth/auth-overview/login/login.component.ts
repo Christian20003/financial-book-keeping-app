@@ -1,7 +1,7 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { slideIn, slideOut } from 'src/app/shared/animations/slideLeftRight';
+import { slideIn, slideOut } from 'src/app/shared/index';
 
 export interface loginData {
   email: string;

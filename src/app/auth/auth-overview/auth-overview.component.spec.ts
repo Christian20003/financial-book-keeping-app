@@ -11,15 +11,13 @@ import { authRoutes } from '../auth-routing-module';
 import { Router } from '@angular/router';
 import { provideMockStore } from '@ngrx/store/testing';
 import {
+  LoadingComponent,
+  SmallErrorMsgComponent,
   initialState,
   userReducer,
-} from 'src/app/shared/stores/UserStore/User.reducer';
-import {
   execEvents,
   getNativeElement,
-} from 'src/app/shared/testing/comp-help-functions';
-import { LoadingComponent } from 'src/app/shared/components/loading/loading.component';
-import { SmallErrorMsgComponent } from 'src/app/shared/components/small-error-msg/small-error-msg.component';
+} from 'src/app/shared/index';
 import { of, throwError } from 'rxjs';
 import { Store, StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';

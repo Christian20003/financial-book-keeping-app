@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { User } from 'src/app/shared/stores/UserStore/User.reducer';
+import { User } from 'src/app/shared/index';
 import { loginData } from './login/login.component';
 
 const loginPath = 'localhost/test'; //'https://backend/login';
