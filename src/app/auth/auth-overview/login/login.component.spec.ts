@@ -229,6 +229,7 @@ describe('LoginComponent - Unit Tests', () => {
     execEvents([emailInput, passwordInput], ['input', 'blur']);
     // Add spy to the emit() function
     spyOn(component.login, 'emit');
+    fixture.detectChanges();
     loginButton.click();
     fixture.detectChanges();
 

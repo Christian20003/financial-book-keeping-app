@@ -56,6 +56,11 @@ $desktop-screen-width: 26rem;
             grid-row-start: 1;
         }
     }
+
+    #error-msg{
+        position: absolute;
+        max-width: 20rem;
+    }
 }
 
 /* Defines the template according to the class assignment and the hover-/focus-effect */

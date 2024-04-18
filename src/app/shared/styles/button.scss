@@ -19,3 +19,8 @@
         background-color: $color-active;
     }
 }
+
+@mixin button-disabled(){
+    background-color: colors.$white;
+    color: colors.$grey;
+}

@@ -21,7 +21,7 @@
   <div id="loading" *ngIf="waiting">
     <app-loading></app-loading>
   </div>
-  <div id="error-msg" *ngIf="error">
+  <div id="error-msg" *ngIf="error" [@slideLeft]>
     <app-small-error-msg [message]="error"></app-small-error-msg>
   </div>
 </div>

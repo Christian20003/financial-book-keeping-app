@@ -2,13 +2,17 @@
 @use '../../styles/container.scss';
 
 #error-container{
+    min-width: 20rem;
     color: colors.$white;
-    border-radius: 5px;
-    padding: 5px;
+    padding: 0.4rem;
     box-shadow: container.$shadow-border-light-bg;
 
     #text-container{
-        background-color: colors.$black;
-        padding: 5px;
+        background-color: colors.$soft-red;
+        padding: 0.4rem 2rem;
+
+        #error-header{
+            text-align: center;
+        }
     }
 }

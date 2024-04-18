@@ -70,5 +70,7 @@
       <app-invalid-input [message]="text.password.missing"></app-invalid-input>
     </div>
   </div>
-  <button id="login-button">{{ text.login }}</button>
+  <button id="login-button" [disabled]="!password?.valid || !email?.valid">
+    {{ text.login }}
+  </button>
 </form>

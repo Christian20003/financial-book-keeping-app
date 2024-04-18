@@ -24,14 +24,19 @@ $desktop-screen-width: 26rem;
         }
 
         // Enables the moving-up animations for the labels
-        #email:where(:focus, .ng-dirty) ~ #label-email, 
-        #password:where(:focus, .ng-dirty) ~ #label-password{
-            $moveX: 50%;
-            $moveY: -58%;
+        #email:where(:focus, .ng-dirty) ~ #label-email{
             @media (min-width: $desktop-screen-width) {
-                transform: translate($moveX, $moveY);
+                transform: translate(50%, -58%);
             }
-           transform: translate(0, $moveY);
+           transform: translate(0, -58%);
+        }
+
+        // Enables the moving-up animations for the labels
+        #password:where(:focus, .ng-dirty) ~ #label-password{
+            @media (min-width: $desktop-screen-width) {
+                transform: translate(60%, -58%);
+            }
+           transform: translate(0, -58%);
         }
 
         .icon{
@@ -46,7 +51,12 @@ $desktop-screen-width: 26rem;
     }
 
     #login-button{
-        @include button.button();
+        &:disabled{
+            @include button.button-disabled();
+        }
+        &:not(:disabled){
+            @include button.button();
+        }
         @include text.description($align: center, $color: colors.$moderate-red);
         padding: 1rem 2rem;
     }
