@@ -238,6 +238,20 @@ describe('LoginComponent - Unit Tests', () => {
     expect(component.loginForm.valid).toBeTruthy();
     expect(component.login.emit).toHaveBeenCalled();
   });
+
+  it('U-Test: The forgetPwd emitter should be triggerd if the <a> element will be clicked', () => {
+    const forgetPwd = getNativeElement<LoginComponent, HTMLButtonElement>(
+      fixture,
+      '#forget-pwd'
+    );
+    // Add spy to the emit() function
+    spyOn(component.forgetPwd, 'emit');
+    forgetPwd.click();
+    fixture.detectChanges();
+
+    /* TESTS */
+    expect(component.forgetPwd.emit).toHaveBeenCalled();
+  });
 });
 
 /*################################################################################################################################ 

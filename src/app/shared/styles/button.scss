@@ -24,3 +24,16 @@
     background-color: colors.$white;
     color: colors.$grey;
 }
+
+@mixin link-button(){
+    border: none;
+    background-color: colors.$white;
+    color: colors.$blue;
+    cursor: pointer;
+    text-align: start;
+    text-decoration: underline;
+
+    &:where(:hover, :focus){
+        color: colors.$dark-blue;
+    }
+}

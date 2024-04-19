@@ -61,3 +61,8 @@ $desktop-screen-width: 26rem;
         padding: 1rem 2rem;
     }
 }
+
+#forget-pwd{
+    margin-top: 2rem;
+    @include button.link-button();
+}

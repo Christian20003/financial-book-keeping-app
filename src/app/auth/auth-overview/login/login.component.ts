@@ -1,8 +1,19 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import {
+  AbstractControl,
+  FormControl,
+  FormGroup,
+  Validators,
+} from '@angular/forms';
 import { slideIn, slideOut } from 'src/app/shared/index';
 
+/**
+ * This interface represents the structure of the data which will be sent through the login event.
+ *
+ * @property {string} email - The entered email address from the user
+ * @property {string} password - The entered password from the user
+ */
 export interface loginData {
   email: string;
   password: string;
@@ -14,6 +25,7 @@ export interface loginData {
   styleUrls: ['./login.component.scss'],
   animations: [
     trigger('slideEffect', [
+      // If some error message to the input element should be rendered it will use the a slideIn animation
       transition(':enter', [
         useAnimation(slideIn, {
           params: {
@@ -22,6 +34,7 @@ export interface loginData {
           },
         }),
       ]),
+      // If some error message to the input element should be destroyed it will use the a slideOut animation
       transition(
         ':leave',
         useAnimation(slideOut, {
@@ -35,10 +48,15 @@ export interface loginData {
   ],
 })
 export class LoginComponent implements OnInit {
+  //EventEmitter to sent the entered login data to the parent component.
   @Output() login = new EventEmitter<loginData>();
+  // EventEmitter to signal the parent component that the user forgot his password.
+  @Output() forgetPwd = new EventEmitter();
 
+  // The reactive login form
   loginForm!: FormGroup;
 
+  // All text values which are used in this component.
   text = {
     email: {
       label: 'Email-Adresse',
@@ -51,6 +69,7 @@ export class LoginComponent implements OnInit {
     },
     login: 'Anmelden',
     errorMsg: 'Es ist leider ein unerwarteter Fehler aufgetreten',
+    forgetPwd: 'Passwort vergessen?',
   };
 
   ngOnInit(): void {
@@ -60,20 +79,39 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  get email() {
+  /**
+   * This function returns the email value of the corresponding element in the form.
+   * @returns The control object of email from the form
+   */
+  get email(): AbstractControl<string, string> | null {
     return this.loginForm.get('email');
   }
 
-  get password() {
+  /**
+   * This function returns the password value of the corresponding element in the form.
+   * @returns The control object of password from the form
+   */
+  get password(): AbstractControl<string, string> | null {
     return this.loginForm.get('password');
   }
 
-  onSubmit() {
+  /**
+   * This function emits an event to the parent component with the entered data in the form. If one of the elements are not
+   * valid the event will not be emitted.
+   */
+  onSubmit(): void {
     if (this.email?.valid && this.password?.valid) {
       this.login.emit({
         email: this.email.value,
         password: this.password.value,
       });
     }
+  }
+
+  /**
+   * This function emits ann event to the parent component that the user has clicked the 'forget-pwd' <a> element.
+   */
+  onForgetPassword(): void {
+    this.forgetPwd.emit();
   }
 }

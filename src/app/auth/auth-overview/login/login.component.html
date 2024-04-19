@@ -1,6 +1,8 @@
 <form id="login-form" [formGroup]="loginForm" (submit)="onSubmit()">
   <div class="relative-container">
+    <!-- The input element for the email -->
     <input id="email" class="input" type="email" formControlName="email" />
+    <!-- The label for the email element with an SVG -->
     <div id="label-email" class="label">
       <svg
         class="icon"
@@ -25,12 +27,14 @@
     </div>
   </div>
   <div class="relative-container">
+    <!-- The element with the information about missing email address -->
     <div
       class="missing"
       *ngIf="email?.errors?.['required'] && email?.touched"
       [@slideEffect]>
       <app-invalid-input [message]="text.email.missing"></app-invalid-input>
     </div>
+    <!-- The element with the information about invalid email address -->
     <div
       class="missing"
       *ngIf="email?.errors?.['email'] && email?.touched"
@@ -39,11 +43,13 @@
     </div>
   </div>
   <div class="relative-container">
+    <!-- The input element for the passord -->
     <input
       id="password"
       class="input"
       type="password"
       formControlName="password" />
+    <!-- The label for the password field with an SVG -->
     <div id="label-password" class="label">
       <svg
         class="icon"
@@ -63,6 +69,7 @@
     </div>
   </div>
   <div class="relative-container">
+    <!-- The element with the information about missing password -->
     <div
       class="missing"
       *ngIf="!password?.valid && password?.touched"
@@ -70,7 +77,12 @@
       <app-invalid-input [message]="text.password.missing"></app-invalid-input>
     </div>
   </div>
+  <!-- The login button -->
   <button id="login-button" [disabled]="!password?.valid || !email?.valid">
     {{ text.login }}
   </button>
 </form>
+<!-- The forget pasword button -->
+<button id="forget-pwd" (click)="onForgetPassword()">
+  {{ text.forgetPwd }}
+</button>
