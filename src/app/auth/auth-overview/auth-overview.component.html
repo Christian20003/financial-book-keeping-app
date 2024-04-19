@@ -11,11 +11,22 @@
     </button>
   </div>
   <div class="overlap-grid-container">
-    <div *ngIf="isLogin()" [@slideLeft] class="auth-content">
-      <app-login (login)="onSubmit($event)"></app-login>
+    <div
+      *ngIf="isLogin() && !isSetAccessCode() && !isGetAccessCode()"
+      [@slideLeft]
+      class="auth-content">
+      <app-login
+        (login)="onSubmit($event)"
+        (forgetPwd)="onForgetPwd()"></app-login>
     </div>
     <div *ngIf="!isLogin()" [@slideRight] class="auth-content">
       <app-register></app-register>
+    </div>
+    <div *ngIf="isGetAccessCode()" [@slideRight] class="auth-content">
+      <app-get-code (setEmail)="onSetEmail($event)"></app-get-code>
+    </div>
+    <div *ngIf="isSetAccessCode()" [@slideLeft] class="auth-content">
+      <app-set-code></app-set-code>
     </div>
   </div>
   <div id="loading" *ngIf="waiting">

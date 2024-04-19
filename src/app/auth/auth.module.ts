@@ -10,6 +10,8 @@ import { SmallErrorMsgComponent } from '../shared/components/small-error-msg/sma
 import { LoadingComponent } from '../shared/components/loading/loading.component';
 import { AuthRoutingModule } from './auth-routing-module';
 import { HttpClientModule } from '@angular/common/http';
+import { GetCodeComponent } from './auth-overview/get-code/get-code.component';
+import { SetCodeComponent } from './auth-overview/set-code/set-code.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { HttpClientModule } from '@angular/common/http';
     InvalidInputComponent,
     SmallErrorMsgComponent,
     LoadingComponent,
+    GetCodeComponent,
+    SetCodeComponent,
   ],
   imports: [
     CommonModule,

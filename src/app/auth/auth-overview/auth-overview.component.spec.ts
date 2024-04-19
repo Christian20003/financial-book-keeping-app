@@ -23,6 +23,8 @@ import { Store, StoreModule } from '@ngrx/store';
 import { HttpClientModule } from '@angular/common/http';
 import { selectUser } from 'src/app/shared/stores/UserStore/User.selector';
 import { ReactiveFormsModule } from '@angular/forms';
+import { GetCodeComponent } from './get-code/get-code.component';
+import { SetCodeComponent } from './set-code/set-code.component';
 
 const loginData = {
   email: 'test.test@test.com',
@@ -61,6 +63,8 @@ describe('AuthOverviewComponent', () => {
         MockComponent(RegisterComponent),
         MockComponent(LoadingComponent),
         MockComponent(SmallErrorMsgComponent),
+        MockComponent(GetCodeComponent),
+        MockComponent(SetCodeComponent),
       ],
       imports: [
         BrowserAnimationsModule,
@@ -120,6 +124,18 @@ describe('AuthOverviewComponent', () => {
         RegisterComponent
       >(fixture, 'app-register');
       expect(registerComp).toBeTruthy();
+    });
+  }));
+
+  xit('U-Test: ForgetPassword component should appear after navigating to "/login/forgetPassword"', fakeAsync(() => {
+    // TODO: Fix test
+    router.navigate(['/login/forgetPassword']).then(() => {
+      fixture.detectChanges();
+      const forgetPwdComp = getNativeElement<
+        AuthOverviewComponent,
+        GetCodeComponent
+      >(fixture, 'app-forget-password');
+      expect(forgetPwdComp).toBeTruthy();
     });
   }));
 
@@ -233,6 +249,8 @@ describe('AuthOverviewComponent - Integration Tests', () => {
         RegisterComponent,
         LoadingComponent,
         SmallErrorMsgComponent,
+        SetCodeComponent,
+        GetCodeComponent,
       ],
       imports: [
         BrowserAnimationsModule,
@@ -252,6 +270,7 @@ describe('AuthOverviewComponent - Integration Tests', () => {
   });
 
   xit('I-Test: After calling submit() and getting a truthy result, the store should be updated', fakeAsync(() => {
+    // TODO: Fix test
     spyOn(service, 'onPostLogin').and.callFake(() => of(user));
     component.onSubmit(loginData);
     fixture.detectChanges();
@@ -286,6 +305,21 @@ describe('AuthOverviewComponent - Integration Tests', () => {
       button.click();
       fixture.detectChanges();
       expect(component.onSubmit).toHaveBeenCalled();
+    });
+  }));
+
+  it('I-Test: After clicking "forget password" <a> element, the onForgetPwd() function should be called', fakeAsync(() => {
+    spyOn(component, 'onForgetPwd');
+    const router = TestBed.inject(Router);
+    router.navigate(['/login']).then(() => {
+      fixture.detectChanges();
+      const forgetPwdComp = getNativeElement<
+        AuthOverviewComponent,
+        HTMLButtonElement
+      >(fixture, '#forget-pwd');
+      forgetPwdComp.click();
+      fixture.detectChanges();
+      expect(component.onForgetPwd).toHaveBeenCalled();
     });
   }));
 });

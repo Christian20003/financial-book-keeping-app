@@ -1,0 +1,55 @@
+@use '../../../shared/styles/text.scss';
+@use '../../../shared/styles/button.scss';
+@use '../../../shared/styles/container.scss';
+@use '../../../shared/styles/colors.scss';
+
+$desktop-screen-width: 26rem;
+
+#email-form{
+    display: grid;
+    gap: 2rem;
+    margin-top: 1.5rem;
+
+    .relative-container{
+        position: relative;
+
+        .input{
+            @include container.input-container();
+            @include text.description();
+        }
+
+        #label-email{
+            @include container.label-container($top: 8px);
+            @include text.label();
+        }
+
+        // Enables the moving-up animations for the labels
+        #email:where(:focus, .ng-dirty) ~ #label-email{
+            @media (min-width: $desktop-screen-width) {
+                transform: translate(50%, -58%);
+            }
+           transform: translate(0, -58%);
+        }
+
+        .icon{
+            @include container.svg-label-container();
+        }
+
+        .missing{
+            position: absolute;
+            margin: -2rem 0;
+        }
+
+    }
+
+    #send-code-button{
+        &:disabled{
+            @include button.button-disabled();
+        }
+        &:not(:disabled){
+            @include button.button();
+        }
+        @include text.description($align: center, $color: colors.$moderate-red);
+        padding: 1rem 2rem;
+    }
+}

@@ -3,7 +3,12 @@ import { Component } from '@angular/core';
 import { slideIn, slideOut, setUser } from 'src/app/shared/index';
 import { loginData } from './login/login.component';
 import { Router } from '@angular/router';
-import { loginPath, registerPath } from '../auth-routing-module';
+import {
+  getCodePath,
+  loginPath,
+  registerPath,
+  setCodePath,
+} from '../auth-routing-module';
 import { AuthenticationService } from './authentication.service';
 import { Store } from '@ngrx/store';
 
@@ -75,8 +80,25 @@ export class AuthOverviewComponent {
     this.router.navigate([registerPath]);
   }
 
+  onForgetPwd() {
+    this.router.navigate([loginPath, getCodePath]);
+  }
+
+  onSetEmail(email: string) {
+    //TODO: Send a request via service
+    this.router.navigate([loginPath, setCodePath]);
+  }
+
   isLogin() {
-    return this.router.url === '/' + loginPath;
+    return this.router.url.includes(loginPath);
+  }
+
+  isGetAccessCode() {
+    return this.router.url.includes(getCodePath);
+  }
+
+  isSetAccessCode() {
+    return this.router.url.includes(setCodePath);
   }
 
   onSubmit(data: loginData) {
