@@ -301,7 +301,6 @@ describe('AuthOverviewComponent - Integration Tests', () => {
       emailInput.value = 'test@test.de';
       passwordInput.value = '233';
       execEvents([emailInput, passwordInput], ['input', 'blur']);
-      fixture.detectChanges();
       button.click();
       fixture.detectChanges();
       expect(component.onSubmit).toHaveBeenCalled();

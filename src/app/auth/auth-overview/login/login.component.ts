@@ -97,7 +97,7 @@ export class LoginComponent implements OnInit {
 
   /**
    * This function emits an event to the parent component with the entered data in the form. If one of the elements are not
-   * valid the event will not be emitted.
+   * valid the event will not be emitted and the user will be noticed with some error messages.
    */
   onSubmit(): void {
     if (this.email?.valid && this.password?.valid) {
@@ -105,6 +105,14 @@ export class LoginComponent implements OnInit {
         email: this.email.value,
         password: this.password.value,
       });
+    }
+    this.email?.markAsTouched();
+    this.password?.markAsTouched();
+    if (!this.email?.valid && !this.email?.errors?.['email']) {
+      this.email?.setErrors({ required: true });
+    }
+    if (!this.password?.valid) {
+      this.password?.setErrors({ required: true });
     }
   }
 

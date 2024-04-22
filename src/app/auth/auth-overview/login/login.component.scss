@@ -51,12 +51,7 @@ $desktop-screen-width: 26rem;
     }
 
     #login-button{
-        &:disabled{
-            @include button.button-disabled();
-        }
-        &:not(:disabled){
-            @include button.button();
-        }
+        @include button.button();
         @include text.description($align: center, $color: colors.$moderate-red);
         padding: 1rem 2rem;
     }
