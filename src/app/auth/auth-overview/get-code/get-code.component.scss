@@ -19,16 +19,16 @@ $desktop-screen-width: 26rem;
         }
 
         #label-email{
-            @include container.label-container($top: 8px);
+            @include container.label-container($top: -4px);
             @include text.label();
         }
 
         // Enables the moving-up animations for the labels
         #email:where(:focus, .ng-dirty) ~ #label-email{
             @media (min-width: $desktop-screen-width) {
-                transform: translate(50%, -58%);
+                transform: translate(50%, -65%);
             }
-           transform: translate(0, -58%);
+           transform: translate(0, -65%);
         }
 
         .icon{
@@ -43,12 +43,7 @@ $desktop-screen-width: 26rem;
     }
 
     #send-code-button{
-        &:disabled{
-            @include button.button-disabled();
-        }
-        &:not(:disabled){
-            @include button.button();
-        }
+        @include button.button();
         @include text.description($align: center, $color: colors.$moderate-red);
         padding: 1rem 2rem;
     }

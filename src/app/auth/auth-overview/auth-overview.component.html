@@ -23,7 +23,9 @@
       <app-register></app-register>
     </div>
     <div *ngIf="isGetAccessCode()" [@slideRight] class="auth-content">
-      <app-get-code (setEmail)="onSetEmail($event)"></app-get-code>
+      <app-get-code
+        [emailValue]="email"
+        (setEmail)="onSetEmail($event)"></app-get-code>
     </div>
     <div *ngIf="isSetAccessCode()" [@slideLeft] class="auth-content">
       <app-set-code></app-set-code>

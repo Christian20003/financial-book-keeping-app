@@ -14,7 +14,7 @@ $default-border-radius: 0.3rem;
 
 // This mixin defines a simple container for an input element
 @mixin input-container (){
-    padding: 15px;
+    padding: 0.4rem;
     outline: none;
     border: none;
     border-bottom: 3px colors.$very-dark-gray solid;

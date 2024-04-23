@@ -1,5 +1,5 @@
 import { transition, trigger, useAnimation } from '@angular/animations';
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   AbstractControl,
   FormControl,
@@ -39,6 +39,8 @@ import { slideIn, slideOut } from 'src/app/shared';
 export class GetCodeComponent implements OnInit {
   // Form to be able to enter an email address
   emailForm!: FormGroup;
+  // The option to get an existing email address
+  @Input() emailValue = '';
   // EventEmitter to send the email address to the parent component
   @Output() setEmail = new EventEmitter<string>();
 
@@ -54,8 +56,15 @@ export class GetCodeComponent implements OnInit {
 
   ngOnInit(): void {
     this.emailForm = new FormGroup({
-      email: new FormControl(null, [Validators.required, Validators.email]),
+      email: new FormControl(this.emailValue, [
+        Validators.required,
+        Validators.email,
+      ]),
     });
+    // Label will be moved if necessary
+    if (this.emailValue !== '') {
+      this.email?.markAsDirty();
+    }
   }
 
   /**
@@ -67,10 +76,16 @@ export class GetCodeComponent implements OnInit {
   }
   /**
    * This function send the entered email address to the parent component. If the email is not valid then the event will not be triggered.
+   * But the user will be notified with a specific error message.
    */
   onSubmit() {
     if (this.email?.valid) {
       this.setEmail.emit(this.email.value);
+    }
+
+    this.email?.markAsTouched();
+    if (this.email?.invalid && !this.email.errors?.['email']) {
+      this.email.setErrors({ required: true });
     }
   }
 }

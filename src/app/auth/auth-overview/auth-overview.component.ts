@@ -58,6 +58,7 @@ import { Store } from '@ngrx/store';
 export class AuthOverviewComponent {
   waiting = false;
   error = '';
+  email = '';
 
   text = {
     errorMessages: {
@@ -85,6 +86,7 @@ export class AuthOverviewComponent {
   }
 
   onSetEmail(email: string) {
+    this.email = email;
     //TODO: Send a request via service
     this.router.navigate([loginPath, setCodePath]);
   }
