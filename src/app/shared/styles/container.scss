@@ -25,6 +25,20 @@ $default-border-radius: 0.3rem;
     }
 }
 
+// This mixin defines some simple styling rules for a input element with the capacity of a single digit
+@mixin input-code-container(){
+    $border-line-width: 0.2rem;
+    background-color: colors.$light-grey;
+    border: $border-line-width colors.$white solid;
+    border-radius: 0.5rem;
+    outline: none;
+    transition: border-color 0.5s; 
+    
+    &:focus{
+        border: $border-line-width colors.$moderate-red solid;
+    }
+}
+
 /* 
     This mixin defines a simple container for an label element 
     $left   - margin to the left

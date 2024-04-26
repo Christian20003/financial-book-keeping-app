@@ -1,24 +1,41 @@
+@use '../../../shared/styles/button.scss';
+@use '../../../shared/styles/text.scss';
+@use '../../../shared/styles/colors.scss';
+@use '../../../shared/styles/container.scss';
+
 #code-form{
+    position: relative;
     display: grid;
-    grid-auto-flow: column;
-    gap: 0.2rem;
-    margin-top: 1.5rem;
-    margin-bottom: 0.5rem;
+    gap: 2rem;
 
-    .key-field{
-        width: 2rem;
-        height: 3rem;
-        text-align: center;
-        font-size: 14pt;
-        background-color: #9e9e9e;
-        border: 2px white solid;
-        border-radius: 0.5rem;
-        -webkit-transition: none;
-        outline: none; 
-        transition: border-color 0.5s; 
+    #input-container{
+        display: grid;
+        grid-auto-flow: column;
+        gap: 0.2rem;
+        margin-top: 1.5rem;
+        margin-bottom: 0.5rem;
 
-        &:focus{
-            border: 2px #c7493a solid;
+        .key-field{
+            width: 2rem;
+            height: 3rem;
+            @include container.input-code-container();
+            @include text.description($align: center);
         }
+    }
+
+    #relative-container{
+        position: relative;
+
+        #missing{
+            position: absolute;
+            margin: -2rem 0;
+        }
+    }
+
+    #proof-code-button{
+        @include button.button();
+        @include text.description($align: center, $color: colors.$moderate-red);
+        padding: 1rem 2rem;
+        
     }
 }
