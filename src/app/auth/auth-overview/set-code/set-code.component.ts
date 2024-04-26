@@ -1,7 +1,6 @@
-import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { slideIn, slideOut } from 'src/app/shared';
+import { moveLeftToRight } from 'src/app/shared';
 
 /**
  * This interface represents the structure of data which will be emitted by the SetCodeComponent.
@@ -27,29 +26,7 @@ export interface loginCode {
   selector: 'app-set-code',
   templateUrl: './set-code.component.html',
   styleUrls: ['./set-code.component.scss'],
-  animations: [
-    trigger('slideEffect', [
-      // If some error message to the input element should be rendered it will use the a slideIn animation
-      transition(':enter', [
-        useAnimation(slideIn, {
-          params: {
-            length: '-50px',
-            time: '0.5s',
-          },
-        }),
-      ]),
-      // If some error message to the input element should be destroyed it will use the a slideOut animation
-      transition(
-        ':leave',
-        useAnimation(slideOut, {
-          params: {
-            length: '50px',
-            time: '0.5s',
-          },
-        })
-      ),
-    ]),
-  ],
+  animations: [moveLeftToRight],
 })
 export class SetCodeComponent implements OnInit {
   // The formGroup which saves the user input with the code.

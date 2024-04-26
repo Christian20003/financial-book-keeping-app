@@ -1,4 +1,3 @@
-import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import {
   AbstractControl,
@@ -6,7 +5,7 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { slideIn, slideOut } from 'src/app/shared/index';
+import { moveLeftToRight } from 'src/app/shared/index';
 
 /**
  * This interface represents the structure of the data which will be sent through the login event.
@@ -23,29 +22,7 @@ export interface loginData {
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
-  animations: [
-    trigger('slideEffect', [
-      // If some error message to the input element should be rendered it will use the a slideIn animation
-      transition(':enter', [
-        useAnimation(slideIn, {
-          params: {
-            length: '-50px',
-            time: '0.5s',
-          },
-        }),
-      ]),
-      // If some error message to the input element should be destroyed it will use the a slideOut animation
-      transition(
-        ':leave',
-        useAnimation(slideOut, {
-          params: {
-            length: '50px',
-            time: '0.5s',
-          },
-        })
-      ),
-    ]),
-  ],
+  animations: [moveLeftToRight],
 })
 export class LoginComponent implements OnInit {
   //EventEmitter to sent the entered login data to the parent component.

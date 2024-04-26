@@ -31,14 +31,14 @@
     <div
       class="missing"
       *ngIf="email?.errors?.['required'] && email?.touched"
-      [@slideEffect]>
+      [@moveLeftToRight]>
       <app-invalid-input [message]="text.email.missing"></app-invalid-input>
     </div>
     <!-- The element with the information about invalid email address -->
     <div
       class="missing"
       *ngIf="email?.errors?.['email'] && email?.touched"
-      [@slideEffect]>
+      [@moveLeftToRight]>
       <app-invalid-input [message]="text.email.invalid"></app-invalid-input>
     </div>
   </div>

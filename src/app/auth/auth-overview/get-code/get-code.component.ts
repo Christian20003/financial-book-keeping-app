@@ -1,4 +1,3 @@
-import { transition, trigger, useAnimation } from '@angular/animations';
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import {
   AbstractControl,
@@ -6,35 +5,13 @@ import {
   FormGroup,
   Validators,
 } from '@angular/forms';
-import { slideIn, slideOut } from 'src/app/shared';
+import { moveLeftToRight } from 'src/app/shared';
 
 @Component({
   selector: 'app-get-code',
   templateUrl: './get-code.component.html',
   styleUrls: ['./get-code.component.scss'],
-  animations: [
-    trigger('slideEffect', [
-      // If some error message to the input element should be rendered it will use the a slideIn animation
-      transition(':enter', [
-        useAnimation(slideIn, {
-          params: {
-            length: '-50px',
-            time: '0.5s',
-          },
-        }),
-      ]),
-      // If some error message to the input element should be destroyed it will use the a slideOut animation
-      transition(
-        ':leave',
-        useAnimation(slideOut, {
-          params: {
-            length: '50px',
-            time: '0.5s',
-          },
-        })
-      ),
-    ]),
-  ],
+  animations: [moveLeftToRight],
 })
 export class GetCodeComponent implements OnInit {
   // Form to be able to enter an email address

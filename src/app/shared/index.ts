@@ -1,5 +1,10 @@
 export { InvalidInputComponent } from './components/invalid-input/invalid-input.component';
-export { slideIn, slideOut } from './animations/slideLeftRight';
+export {
+  slideIn,
+  slideOut,
+  moveLeftToRight,
+  moveRightToLeft,
+} from './animations/slideLeftRight';
 export { LoadingComponent } from './components/loading/loading.component';
 export { SmallErrorMsgComponent } from './components/small-error-msg/small-error-msg.component';
 export {
