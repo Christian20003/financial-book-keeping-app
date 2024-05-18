@@ -44,12 +44,30 @@ export class SetCodeComponent implements OnInit {
 
   ngOnInit(): void {
     this.codeForm = new FormGroup({
-      value1: new FormControl(null, Validators.required),
-      value2: new FormControl(null, Validators.required),
-      value3: new FormControl(null, Validators.required),
-      value4: new FormControl(null, Validators.required),
-      value5: new FormControl(null, Validators.required),
-      value6: new FormControl(null, Validators.required),
+      value1: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(1),
+      ]),
+      value2: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(1),
+      ]),
+      value3: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(1),
+      ]),
+      value4: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(1),
+      ]),
+      value5: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(1),
+      ]),
+      value6: new FormControl(null, [
+        Validators.required,
+        Validators.maxLength(1),
+      ]),
     });
   }
 
@@ -59,8 +77,8 @@ export class SetCodeComponent implements OnInit {
    * @param currrent  - The current input element which received an input event
    * @param next      - The next input element which should be focused
    */
-  toNext(currrent: HTMLInputElement, next: HTMLInputElement): void {
-    if (currrent.value) {
+  toNext(current: HTMLInputElement, next: HTMLInputElement): void {
+    if (current.value) {
       next.focus();
     }
   }

@@ -20,4 +20,9 @@ export {
   userReducer,
 } from './stores/UserStore/User.reducer';
 export { selectUser, selectSession } from './stores/UserStore/User.selector';
-export { getNativeElement, execEvents } from './testing/comp-help-functions';
+export {
+  getNativeElement,
+  getNativeElements,
+  execEvents,
+  getComponent,
+} from './testing/comp-help-functions';
