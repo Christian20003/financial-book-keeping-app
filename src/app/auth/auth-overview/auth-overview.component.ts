@@ -4,7 +4,6 @@ import {
   moveLeftToRight,
   moveRightToLeft,
 } from 'src/app/shared/index';
-import { loginData } from './login/login.component';
 import { Router } from '@angular/router';
 import {
   getCodePath,
@@ -14,6 +13,7 @@ import {
 } from '../auth-routing-module';
 import { AuthenticationService } from './authentication.service';
 import { Store } from '@ngrx/store';
+import { loginData } from '../auth.interface';
 
 @Component({
   selector: 'app-auth-overview',

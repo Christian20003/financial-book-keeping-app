@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/shared/index';
-import { loginData } from './login/login.component';
+import { loginData } from '../auth.interface';
 
 const loginPath = 'localhost/test'; //'https://backend/login';
 const registerPath = 'https://backend/register';

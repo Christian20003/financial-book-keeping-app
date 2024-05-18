@@ -6,17 +6,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { moveLeftToRight } from 'src/app/shared/index';
-
-/**
- * This interface represents the structure of the data which will be sent through the login event.
- *
- * @property {string} email - The entered email address from the user
- * @property {string} password - The entered password from the user
- */
-export interface loginData {
-  email: string;
-  password: string;
-}
+import { loginData } from '../../auth.interface';
 
 @Component({
   selector: 'app-login',
