@@ -3,6 +3,7 @@ import {
   setUser,
   moveLeftToRight,
   moveRightToLeft,
+  User,
 } from 'src/app/shared/index';
 import { Router } from '@angular/router';
 import {
@@ -72,23 +73,16 @@ export class AuthOverviewComponent {
   onSubmit(data: loginData) {
     this.error = '';
     this.waiting = true;
-    this.authService.onPostLogin(data).subscribe({
+    this.authService.postLogin(data).subscribe({
       next: response => {
-        this.store.dispatch(setUser({ user: response }));
+        this.store.dispatch(setUser({ user: response as User }));
         this.waiting = false;
         // TODO: Changes route
         /* this.router.navigate(); */
       },
       error: error => {
         this.waiting = false;
-        switch (error.status) {
-          case 401:
-            this.error = this.text.errorMessages.wrong;
-            break;
-          default:
-            this.error = this.text.errorMessages.unknown;
-            break;
-        }
+        this.error = error.message;
       },
     });
   }

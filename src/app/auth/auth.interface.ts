@@ -10,6 +10,18 @@ export interface loginData {
 }
 
 /**
+ * This interface represents the structure of the data which will be sent through the register event.
+ *
+ * @property {string} email - The entered email address from the user
+ *  @property {string} name  - The entered username from the user
+ * @property {string} password - The entered password from the user
+ */
+export interface registerData {
+  email: string;
+  password: string;
+}
+
+/**
  * This interface represents the structure of data which will be emitted by the SetCodeComponent.
  * It consists of all code values.
  *
