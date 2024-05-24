@@ -2,11 +2,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/shared/index';
 import { loginCode, loginData, registerData } from '../auth.interface';
-import { Observable, catchError, map, tap, throwError } from 'rxjs';
-
-const LOGIN_PATH = 'localhost/bla'; //'https://backend/login';
-const REGISTER_PATH = 'https://backend/register';
-const CODE_PATH = 'https://backend/login/code';
+import { Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +18,10 @@ export class AuthenticationService {
     unknown: 'Es ist ein unerwarteter Fehler eingetreten',
   };
 
+  LOGIN_PATH = 'https://backend/login';
+  REGISTER_PATH = 'https://backend/register';
+  CODE_PATH = 'https://backend/login/code';
+
   constructor(private http: HttpClient) {}
 
   /**
@@ -33,7 +33,7 @@ export class AuthenticationService {
    * @returns           An observable either with a {@link User} object after success or an {@link Error} object after failure.
    */
   postLogin(data: loginData): Observable<User | Error> {
-    return this.http.post<User>(LOGIN_PATH, data).pipe(
+    return this.http.post<User>(this.LOGIN_PATH, data).pipe(
       map(response => {
         if (
           response.name &&
@@ -61,7 +61,7 @@ export class AuthenticationService {
    * @returns           An observable either with a {@link User} object after success or an {@link Error} object after failure.
    */
   postRegister(data: registerData): Observable<User | Error> {
-    return this.http.post<User>(REGISTER_PATH, data).pipe(
+    return this.http.post<User>(this.REGISTER_PATH, data).pipe(
       map(response => {
         if (
           response.name &&
@@ -90,7 +90,7 @@ export class AuthenticationService {
    */
   getLoginCode(email: string): Observable<string | Error> {
     return this.http
-      .post<string>(CODE_PATH, email)
+      .post<string>(this.CODE_PATH, email)
       .pipe(catchError(this.errorHandling));
   }
 
@@ -103,7 +103,7 @@ export class AuthenticationService {
    * @returns           An observable either with a {@link User} object after success or an {@link Error} object after failure.
    */
   setLoginCode(data: loginCode): Observable<User | Error> {
-    return this.http.put<User>(CODE_PATH, data).pipe(
+    return this.http.put<User>(this.CODE_PATH, data).pipe(
       map(response => {
         if (
           response.name &&
