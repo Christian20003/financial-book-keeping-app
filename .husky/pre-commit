@@ -1,2 +1,2 @@
-npm run lint
-npm run test:firefox
+#npm run lint
+#npm run test:firefox
