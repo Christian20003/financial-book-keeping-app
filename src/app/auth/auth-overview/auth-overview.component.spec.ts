@@ -50,7 +50,9 @@ describe('AuthOverviewComponent', () => {
   let component: AuthOverviewComponent;
   let fixture: ComponentFixture<AuthOverviewComponent>;
   let router: Router;
-  let stubService: any;
+  let stubService = jasmine.createSpyObj('AuthenticationService', [
+    'postLogin',
+  ]);
 
   beforeEach(() => {
     stubService = jasmine.createSpyObj('AuthenticationService', ['postLogin']);
