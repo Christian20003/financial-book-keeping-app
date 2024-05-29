@@ -1,7 +1,7 @@
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { User } from 'src/app/shared/index';
-import { loginCode, loginData, registerData } from '../auth.interface';
+import { securityCode, loginData, registerData } from '../auth.interface';
 import { Observable, catchError, map, throwError } from 'rxjs';
 
 @Injectable({
@@ -88,7 +88,7 @@ export class AuthenticationService {
    * @param email       - The email address to which the security code should be sent.
    * @returns           An observable either with a string message after success or an {@link Error} object after failure.
    */
-  getLoginCode(email: string): Observable<string | Error> {
+  postEmail(email: string): Observable<string | Error> {
     return this.http
       .post<string>(this.CODE_PATH, email)
       .pipe(catchError(this.errorHandling));
@@ -96,30 +96,16 @@ export class AuthenticationService {
 
   /**
    * This function makes a PUT request via HTTP to sent the entered security code for validation. If the request was successfull it will return an
-   * observable with a {@link User} object, otherwise it will return an observable with an {@link Error} object, inlcuding a corresponding
+   * observable with a string message, otherwise it will return an observable with an {@link Error} object, inlcuding a corresponding
    * message.
    *
-   * @param data      - The code data as a {@link loginCode} object.
-   * @returns           An observable either with a {@link User} object after success or an {@link Error} object after failure.
+   * @param data      - The code data as a {@link securityCode} object.
+   * @returns           An observable either with a string message after success or an {@link Error} object after failure.
    */
-  setLoginCode(data: loginCode): Observable<User | Error> {
-    return this.http.put<User>(this.CODE_PATH, data).pipe(
-      map(response => {
-        if (
-          response.name &&
-          response.email &&
-          response.id &&
-          response.session
-        ) {
-          return response;
-        }
-        console.error(
-          'Something went wrong with the structure of the response during validation of security code'
-        );
-        return new Error(AuthenticationService.errorMsg.invalidStructure);
-      }),
-      catchError(this.errorHandling)
-    );
+  postCode(data: securityCode): Observable<string | Error> {
+    return this.http
+      .put<string>(this.CODE_PATH, data)
+      .pipe(catchError(this.errorHandling));
   }
 
   /**

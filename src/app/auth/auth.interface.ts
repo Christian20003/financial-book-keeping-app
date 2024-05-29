@@ -33,7 +33,7 @@ export interface registerData {
  * @property {number} value5  - The fifth code value
  * @property {number} value6  - The sixth code value
  */
-export interface loginCode {
+export interface securityCode {
   value1: number;
   value2: number;
   value3: number;

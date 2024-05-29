@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { moveLeftToRight } from 'src/app/shared';
-import { loginCode } from '../../auth.interface';
+import { securityCode } from '../../auth.interface';
 
 @Component({
   selector: 'app-set-code',
@@ -13,7 +13,7 @@ export class SetCodeComponent implements OnInit {
   // The formGroup which saves the user input with the code.
   codeForm!: FormGroup;
   // The eventEmitter which sends the entered code to the parent component
-  @Output() sendCode = new EventEmitter<loginCode>();
+  @Output() sendCode = new EventEmitter<securityCode>();
   // Bool which identifies if a complete access code has been entered
   isInvalid = false;
 

@@ -13,7 +13,7 @@ import {
 } from '../auth-routing-module';
 import { AuthenticationService } from './authentication.service';
 import { Store } from '@ngrx/store';
-import { loginCode, loginData, registerData } from '../auth.interface';
+import { securityCode, loginData, registerData } from '../auth.interface';
 
 @Component({
   selector: 'app-auth-overview',
@@ -65,7 +65,7 @@ export class AuthOverviewComponent {
   onSetEmail(email: string) {
     this.error = '';
     this.waiting = true;
-    this.authService.getLoginCode(email).subscribe({
+    this.authService.postEmail(email).subscribe({
       next: response => {
         this.waiting = false;
         this.email = response as string;
@@ -83,10 +83,10 @@ export class AuthOverviewComponent {
    *
    * @param code   - The security code which should be sent
    */
-  onSetCode(code: loginCode) {
+  onSetCode(code: securityCode) {
     this.error = '';
     this.waiting = true;
-    this.authService.setLoginCode(code).subscribe({
+    this.authService.postCode(code).subscribe({
       next: () => {
         this.waiting = false;
         this.router.navigate([loginPath]);

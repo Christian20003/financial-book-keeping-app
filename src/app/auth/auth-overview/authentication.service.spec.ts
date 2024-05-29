@@ -85,8 +85,8 @@ describe('AuthenticationService - Unit Tests', () => {
     req.flush(dummyUser);
   });
 
-  it('U-Test: A successful getLoginCode request', () => {
-    service.getLoginCode(dummyUser.email).subscribe({
+  it('U-Test: A successful postEmail request', () => {
+    service.postEmail(dummyUser.email).subscribe({
       next: response => {
         expect(response).toBeTruthy();
       },
@@ -97,7 +97,7 @@ describe('AuthenticationService - Unit Tests', () => {
     req.flush('Success');
   });
 
-  it('U-Test: A successful setLoginCode request', () => {
+  it('U-Test: A successful postCode request', () => {
     const data = {
       value1: 1,
       value2: 2,
@@ -107,20 +107,15 @@ describe('AuthenticationService - Unit Tests', () => {
       value6: 6,
     };
 
-    service.setLoginCode(data).subscribe({
+    service.postCode(data).subscribe({
       next: response => {
-        const user = response as User;
-        expect(user.name).toBeTruthy();
-        expect(user.id).toBeTruthy();
-        expect(user.imagePath).toBeTruthy();
-        expect(user.session).toBeTruthy();
-        expect(user.email).toBeTruthy();
+        expect(response).toBeTruthy();
       },
     });
 
     const req = httpTestingController.expectOne(service.CODE_PATH);
     expect(req.request.method).toBe('PUT');
-    req.flush(dummyUser);
+    req.flush('Success');
   });
 
   /*-----------------------------------------------Unsuccessful-Requests----------------------------------------------------------*/
@@ -164,8 +159,8 @@ describe('AuthenticationService - Unit Tests', () => {
     req.flush(new Error(AuthenticationService.errorMsg.notFound));
   });
 
-  it('U-Test: A faulty getLoginCode request', () => {
-    service.getLoginCode(dummyUser.email).subscribe({
+  it('U-Test: A faulty postEmail request', () => {
+    service.postEmail(dummyUser.email).subscribe({
       error: error => {
         expect(error).toBeTruthy();
         expect(error.message).toEqual(AuthenticationService.errorMsg.unknown);
@@ -177,7 +172,7 @@ describe('AuthenticationService - Unit Tests', () => {
     req.flush(new Error(AuthenticationService.errorMsg.unknown));
   });
 
-  it('U-Test: A faulty setLoginCode request', () => {
+  it('U-Test: A faulty postCode request', () => {
     const data = {
       value1: 1,
       value2: 2,
@@ -187,7 +182,7 @@ describe('AuthenticationService - Unit Tests', () => {
       value6: 6,
     };
 
-    service.setLoginCode(data).subscribe({
+    service.postCode(data).subscribe({
       error: error => {
         expect(error).toBeTruthy();
         expect(error.message).toEqual(
