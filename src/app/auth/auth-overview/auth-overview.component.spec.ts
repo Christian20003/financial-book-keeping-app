@@ -177,7 +177,7 @@ describe('AuthOverviewComponent', () => {
 
   it('U-Test: After calling submit(), the error attribute should be empty and waiting should be true', () => {
     stubService.postLogin.and.returnValue(of());
-    component.onSubmit(loginData);
+    component.onSubmitLogin(loginData);
     fixture.detectChanges();
     expect(component.waiting).toBeTrue();
     expect(component.error).toBe('');
@@ -185,7 +185,7 @@ describe('AuthOverviewComponent', () => {
 
   it('U-Test: After calling submit() and getting a truthy result, waiting should be false', () => {
     stubService.postLogin.and.returnValue(of(user));
-    component.onSubmit(loginData);
+    component.onSubmitLogin(loginData);
     fixture.detectChanges();
     expect(component.waiting).toBeFalse();
     expect(component.error).toBe('');
@@ -197,7 +197,7 @@ describe('AuthOverviewComponent', () => {
         return new Error();
       })
     );
-    component.onSubmit(loginData);
+    component.onSubmitLogin(loginData);
     fixture.detectChanges();
     expect(component.waiting).toBeFalse();
     expect(component.error).toBe('Es ist ein unerwarteter Fehler eingetreten.');
@@ -209,7 +209,7 @@ describe('AuthOverviewComponent', () => {
         return { status: 401 };
       })
     );
-    component.onSubmit(loginData);
+    component.onSubmitLogin(loginData);
     fixture.detectChanges();
     expect(component.waiting).toBeFalse();
     expect(component.error).toBe('Die angegebenen Daten sind ungültig.');
@@ -221,7 +221,7 @@ describe('AuthOverviewComponent', () => {
         return new Error();
       })
     );
-    component.onSubmit(loginData);
+    component.onSubmitLogin(loginData);
     fixture.detectChanges();
     const errorComp = getNativeElement<
       AuthOverviewComponent,
@@ -272,7 +272,7 @@ describe('AuthOverviewComponent - Integration Tests', () => {
   xit('I-Test: After calling submit() and getting a truthy result, the store should be updated', fakeAsync(() => {
     // TODO: Fix test
     spyOn(service, 'postLogin').and.callFake(() => of(user));
-    component.onSubmit(loginData);
+    component.onSubmitLogin(loginData);
     fixture.detectChanges();
     store.select(selectUser).subscribe(state => {
       expect(state).toBeTruthy();
@@ -281,8 +281,8 @@ describe('AuthOverviewComponent - Integration Tests', () => {
     });
   }));
 
-  it('I-Test: After clicking the login button, the onSubmit() function should be called', fakeAsync(() => {
-    spyOn(component, 'onSubmit');
+  it('I-Test: After clicking the login button, the onSubmitLogin() function should be called', fakeAsync(() => {
+    spyOn(component, 'onSubmitLogin');
     const router = TestBed.inject(Router);
     router.navigate(['/login']).then(() => {
       fixture.detectChanges();
@@ -303,7 +303,7 @@ describe('AuthOverviewComponent - Integration Tests', () => {
       execEvents([emailInput, passwordInput], ['input', 'blur']);
       button.click();
       fixture.detectChanges();
-      expect(component.onSubmit).toHaveBeenCalled();
+      expect(component.onSubmitLogin).toHaveBeenCalled();
     });
   }));
 

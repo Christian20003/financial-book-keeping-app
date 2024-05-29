@@ -1,8 +1,10 @@
 <div class="container">
   <div class="grid-container">
+    <!-- Button to access the login screen -->
     <button id="login" [ngClass]="{ inactive: !isLogin() }" (click)="onLogin()">
       Anmelden
     </button>
+    <!-- Button to access the register screen -->
     <button
       id="register"
       [ngClass]="{ inactive: isLogin() }"
@@ -11,30 +13,37 @@
     </button>
   </div>
   <div class="overlap-grid-container">
-    <div
-      *ngIf="isLogin() && !isSetAccessCode() && !isGetAccessCode()"
-      [@moveLeftToRight]
-      class="auth-content">
+    <!-- Register screen -->
+    @if (!isLogin()) {
+      <app-register [@moveLeftToRight] class="auth-content"></app-register>
+      <!-- Login screen -->
+    } @else if (isLogin() && !isCode()) {
       <app-login
-        (login)="onSubmit($event)"
+        [@moveLeftToRight]
+        class="auth-content"
+        (login)="onSubmitLogin($event)"
         (forgetPwd)="onForgetPwd()"></app-login>
-    </div>
-    <div *ngIf="!isLogin()" [@moveLeftToRight] class="auth-content">
-      <app-register></app-register>
-    </div>
-    <div *ngIf="isGetAccessCode()" [@moveLeftToRight] class="auth-content">
+      <!-- Set email for reset password screen -->
+    } @else if (isCode() && !email) {
       <app-get-code
+        [@moveLeftToRight]
+        class="auth-content"
         [emailValue]="email"
         (setEmail)="onSetEmail($event)"></app-get-code>
-    </div>
-    <div *ngIf="isSetAccessCode()" [@moveLeftToRight] class="auth-content">
-      <app-set-code></app-set-code>
-    </div>
+      <!-- Set security code screen -->
+    } @else {
+      <app-set-code [@moveLeftToRight] class="auth-content"></app-set-code>
+    }
   </div>
-  <div id="loading" *ngIf="waiting">
-    <app-loading></app-loading>
-  </div>
-  <div id="error-msg" *ngIf="error" [@moveLeftToRight]>
-    <app-small-error-msg [message]="error"></app-small-error-msg>
-  </div>
+  <!-- Loading screen -->
+  @if (waiting) {
+    <app-loading id="loading"></app-loading>
+  }
+  <!-- Error block -->
+  @if (error) {
+    <app-small-error-msg
+      id="error-msg"
+      [@moveLeftToRight]
+      [message]="error"></app-small-error-msg>
+  }
 </div>

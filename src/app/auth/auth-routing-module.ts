@@ -7,16 +7,15 @@ import { SetCodeComponent } from './auth-overview/set-code/set-code.component';
 
 export const loginPath = 'login';
 export const registerPath = 'register';
-export const getCodePath = 'getAccessCode';
-export const setCodePath = 'setAccessCode';
+export const resetPasswordPath = 'resetPassword';
 
 export const authRoutes: Routes = [
   {
     path: loginPath,
     component: LoginComponent,
     children: [
-      { path: getCodePath, component: GetCodeComponent },
-      { path: setCodePath, component: SetCodeComponent },
+      { path: resetPasswordPath, component: GetCodeComponent },
+      { path: resetPasswordPath, component: SetCodeComponent },
     ],
   },
   { path: registerPath, component: RegisterComponent },
