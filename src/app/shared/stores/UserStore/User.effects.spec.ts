@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { provideMockActions } from '@ngrx/effects/testing';
-import { provideMockStore } from '@ngrx/store/testing';
+import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { Action } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { userEffects } from './User.effects';
@@ -10,6 +10,7 @@ import { initialState } from './User.reducer';
 describe('User-Store Effects - Unit Tests', () => {
   let actions$: Observable<Action>;
   let effects: userEffects;
+  let store: MockStore;
   let localStoreMock: { [key: string]: string };
 
   const userState = {
@@ -56,6 +57,7 @@ describe('User-Store Effects - Unit Tests', () => {
     );
 
     effects = TestBed.inject<userEffects>(userEffects);
+    store = TestBed.inject(MockStore);
   });
 
   it('U-Test: setUser should add the user object on local storage', () => {
@@ -95,5 +97,9 @@ describe('User-Store Effects - Unit Tests', () => {
         user: initialState,
       });
     });
+  });
+
+  afterEach(() => {
+    store.resetSelectors();
   });
 });

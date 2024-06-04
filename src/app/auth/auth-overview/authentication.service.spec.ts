@@ -6,6 +6,7 @@ import {
   HttpTestingController,
 } from '@angular/common/http/testing';
 import { User } from 'src/app/shared';
+import { HttpErrorResponse } from '@angular/common/http';
 
 describe('AuthenticationService - Unit Tests', () => {
   let service: AuthenticationService;
@@ -136,8 +137,9 @@ describe('AuthenticationService - Unit Tests', () => {
     });
 
     const req = httpTestingController.expectOne(service.LOGIN_PATH);
+    const error = new HttpErrorResponse({ status: 406 });
     expect(req.request.method).toBe('POST');
-    req.flush(new Error(AuthenticationService.errorMsg.invalidCredentials));
+    req.flush('Invalid credentials', error);
   });
 
   it('U-Test: A faulty register request', () => {
@@ -155,8 +157,9 @@ describe('AuthenticationService - Unit Tests', () => {
     });
 
     const req = httpTestingController.expectOne(service.REGISTER_PATH);
+    const error = new HttpErrorResponse({ status: 404 });
     expect(req.request.method).toBe('POST');
-    req.flush(new Error(AuthenticationService.errorMsg.notFound));
+    req.flush('Resource not found', error);
   });
 
   it('U-Test: A faulty postEmail request', () => {
@@ -168,8 +171,9 @@ describe('AuthenticationService - Unit Tests', () => {
     });
 
     const req = httpTestingController.expectOne(service.CODE_PATH);
+    const error = new HttpErrorResponse({ status: 444 });
     expect(req.request.method).toBe('POST');
-    req.flush(new Error(AuthenticationService.errorMsg.unknown));
+    req.flush('Unknown problem', error);
   });
 
   it('U-Test: A faulty postCode request', () => {
@@ -192,7 +196,8 @@ describe('AuthenticationService - Unit Tests', () => {
     });
 
     const req = httpTestingController.expectOne(service.CODE_PATH);
+    const error = new HttpErrorResponse({ status: 500 });
     expect(req.request.method).toBe('PUT');
-    req.flush(new Error(AuthenticationService.errorMsg.serverError));
+    req.flush('Server error', error);
   });
 });

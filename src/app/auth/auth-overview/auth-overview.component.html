@@ -32,7 +32,10 @@
         (setEmail)="onSetEmail($event)"></app-get-code>
       <!-- Set security code screen -->
     } @else {
-      <app-set-code [@moveLeftToRight] class="auth-content"></app-set-code>
+      <app-set-code
+        [@moveLeftToRight]
+        (sendCode)="onSetCode($event)"
+        class="auth-content"></app-set-code>
     }
   </div>
   <!-- Loading screen -->
