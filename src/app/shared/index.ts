@@ -19,10 +19,5 @@ export {
   initialState,
   userReducer,
 } from './stores/UserStore/User.reducer';
+export { userEffects } from './stores/UserStore/User.effects';
 export { selectUser, selectSession } from './stores/UserStore/User.selector';
-export {
-  getNativeElement,
-  getNativeElements,
-  execEvents,
-  getComponent,
-} from './testing/comp-help-functions';

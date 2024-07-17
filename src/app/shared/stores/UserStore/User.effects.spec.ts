@@ -60,7 +60,7 @@ describe('User-Store Effects - Unit Tests', () => {
     store = TestBed.inject(MockStore);
   });
 
-  it('U-Test: setUser should add the user object on local storage', () => {
+  it('U-Test-1: setUser should add the user object on local storage', () => {
     actions$ = of({ type: '[User] Set' });
     effects.saveUserData$.subscribe();
     const user = localStorage.getItem('user') as string;
@@ -69,7 +69,7 @@ describe('User-Store Effects - Unit Tests', () => {
     expect(JSON.parse(user).user).toEqual(userState);
   });
 
-  it('U-Test: setUserSession should add the user object on local storage', () => {
+  it('U-Test-2: setUserSession should add the user object on local storage', () => {
     actions$ = of({ type: '[User] Set session' });
     effects.saveUserData$.subscribe();
     const user = localStorage.getItem('user') as string;
@@ -78,7 +78,7 @@ describe('User-Store Effects - Unit Tests', () => {
     expect(JSON.parse(user).user).toEqual(userState);
   });
 
-  it('U-Test: loadSession should trigger setUser action with given storage data', () => {
+  it('U-Test-3: loadSession should trigger setUser action with given storage data', () => {
     actions$ = of({ type: '[User] Load session' });
     localStorage.setItem('user', JSON.stringify(userState));
     effects.loadUserData$.subscribe(action => {
@@ -89,7 +89,7 @@ describe('User-Store Effects - Unit Tests', () => {
     });
   });
 
-  it('U-Test: loadSession should trigger setUser action with default data', () => {
+  it('U-Test-4: loadSession should trigger setUser action with default data', () => {
     actions$ = of({ type: '[User] Load session' });
     effects.loadUserData$.subscribe(action => {
       expect(action).toEqual({

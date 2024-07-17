@@ -13,13 +13,13 @@ describe('User-Store Selectors - Unit Tests', () => {
     },
   };
 
-  it('U-Test: Should select the user object', () => {
+  it('U-Test-1: Should select the user object', () => {
     const result = selectUser.projector(initialState);
     expect(result.name).toBe(initialState.name);
     expect(result.session.token).toBe(initialState.session.token);
   });
 
-  it('U-Test: Should select the session object', () => {
+  it('U-Test-2: Should select the session object', () => {
     const result = selectSession.projector(initialState);
     expect(result.token).toBe(initialState.session.token);
     expect(result.expire).toBe(initialState.session.expire);

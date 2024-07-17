@@ -37,11 +37,11 @@ describe('AuthenticationService - Unit Tests', () => {
 
   /*-----------------------------------------------Successful-Requests-----------------------------------------------------------*/
 
-  it('U-Test: should be created', () => {
+  it('U-Test-1: should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  it('U-Test: A successful login request', () => {
+  it('U-Test-2: A successful login request', () => {
     const data = {
       email: dummyUser.email,
       password: dummyUser.password,
@@ -63,7 +63,7 @@ describe('AuthenticationService - Unit Tests', () => {
     req.flush(dummyUser);
   });
 
-  it('U-Test: A successful register request', () => {
+  it('U-Test-3: A successful register request', () => {
     const data = {
       email: dummyUser.email,
       name: dummyUser.name,
@@ -86,7 +86,7 @@ describe('AuthenticationService - Unit Tests', () => {
     req.flush(dummyUser);
   });
 
-  it('U-Test: A successful postEmail request', () => {
+  it('U-Test-4: A successful postEmail request', () => {
     service.postEmail(dummyUser.email).subscribe({
       next: response => {
         expect(response).toBeTruthy();
@@ -98,7 +98,7 @@ describe('AuthenticationService - Unit Tests', () => {
     req.flush('Success');
   });
 
-  it('U-Test: A successful postCode request', () => {
+  it('U-Test-5: A successful postCode request', () => {
     const data = {
       value1: 1,
       value2: 2,
@@ -121,7 +121,7 @@ describe('AuthenticationService - Unit Tests', () => {
 
   /*-----------------------------------------------Unsuccessful-Requests----------------------------------------------------------*/
 
-  it('U-Test: A faulty login request', () => {
+  it('U-Test-6: A faulty login request', () => {
     const data = {
       email: dummyUser.email,
       password: dummyUser.password,
@@ -142,7 +142,7 @@ describe('AuthenticationService - Unit Tests', () => {
     req.flush('Invalid credentials', error);
   });
 
-  it('U-Test: A faulty register request', () => {
+  it('U-Test-7: A faulty register request', () => {
     const data = {
       email: dummyUser.email,
       name: dummyUser.name,
@@ -162,7 +162,7 @@ describe('AuthenticationService - Unit Tests', () => {
     req.flush('Resource not found', error);
   });
 
-  it('U-Test: A faulty postEmail request', () => {
+  it('U-Test-8: A faulty postEmail request', () => {
     service.postEmail(dummyUser.email).subscribe({
       error: error => {
         expect(error).toBeTruthy();
@@ -176,7 +176,7 @@ describe('AuthenticationService - Unit Tests', () => {
     req.flush('Unknown problem', error);
   });
 
-  it('U-Test: A faulty postCode request', () => {
+  it('U-Test-9: A faulty postCode request', () => {
     const data = {
       value1: 1,
       value2: 2,
