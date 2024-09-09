@@ -1,7 +1,23 @@
-<p>register works!</p>
-<p>register works!</p>
-<p>register works!</p>
-<p>register works!</p>
-<p>register works!</p>
-<p>register works!</p>
-<p>register works!</p>
+<!-- idee: https://pankaj-kumar.medium.com/angular-8-9-user-registration-and-login-example-and-tutoria-96e7a6615c48 -->
+
+    <div class="container">
+    <h2>User Registration</h2>
+      <form >
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input type="text" id="firstName" name="firstName" required minlength="2">
+        </div>
+  
+        <div class="form-group">
+          <label for="lastName">Last Name</label>
+          <input type="text" id="lastName" name="lastName" required>
+        </div>
+  
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" required email>
+        </div>
+  
+        <button type="submit" class="btn btn-primary" >Submit</button>
+      </form>
+    </div>
