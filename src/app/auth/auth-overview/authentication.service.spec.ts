@@ -1,12 +1,9 @@
 import { TestBed } from '@angular/core/testing';
 
 import { AuthenticationService } from './authentication.service';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { User } from 'src/app/shared';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 
 describe('AuthenticationService - Unit Tests', () => {
   let service: AuthenticationService;
@@ -25,8 +22,9 @@ describe('AuthenticationService - Unit Tests', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
-    });
+    imports: [],
+    providers: [provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
     service = TestBed.inject(AuthenticationService);
     httpTestingController = TestBed.inject(HttpTestingController);
   });

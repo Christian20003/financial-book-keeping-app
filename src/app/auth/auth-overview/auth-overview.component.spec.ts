@@ -26,15 +26,12 @@ import {
 } from 'src/app/shared/index';
 import { of, throwError } from 'rxjs';
 import { Store, StoreModule } from '@ngrx/store';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { selectUser } from 'src/app/shared/stores/UserStore/User.selector';
 import { ReactiveFormsModule } from '@angular/forms';
 import { GetCodeComponent } from './get-code/get-code.component';
 import { SetCodeComponent } from './set-code/set-code.component';
-import {
-  HttpClientTestingModule,
-  HttpTestingController,
-} from '@angular/common/http/testing';
+import { HttpTestingController, provideHttpClientTesting } from '@angular/common/http/testing';
 import { EffectsModule } from '@ngrx/effects';
 import { userEffects } from 'src/app/shared/stores/UserStore/User.effects';
 
@@ -572,25 +569,22 @@ describe('AuthOverviewComponent', () => {
   describe('#Integration-Tests', () => {
     beforeEach(() => {
       TestBed.configureTestingModule({
-        declarations: [
-          AuthOverviewComponent,
-          LoginComponent,
-          RegisterComponent,
-          LoadingComponent,
-          SmallErrorMsgComponent,
-          SetCodeComponent,
-          GetCodeComponent,
-        ],
-        imports: [
-          BrowserAnimationsModule,
-          RouterModule.forRoot(authRoutes),
-          HttpClientTestingModule,
-          StoreModule.forRoot({ user: userReducer }, {}),
-          EffectsModule.forRoot([userEffects]),
-          ReactiveFormsModule,
-        ],
-        providers: [AuthenticationService],
-      });
+    declarations: [
+        AuthOverviewComponent,
+        LoginComponent,
+        RegisterComponent,
+        LoadingComponent,
+        SmallErrorMsgComponent,
+        SetCodeComponent,
+        GetCodeComponent,
+    ],
+    imports: [BrowserAnimationsModule,
+        RouterModule.forRoot(authRoutes),
+        StoreModule.forRoot({ user: userReducer }, {}),
+        EffectsModule.forRoot([userEffects]),
+        ReactiveFormsModule],
+    providers: [AuthenticationService, provideHttpClient(withInterceptorsFromDi()), provideHttpClientTesting()]
+});
       fixture = TestBed.createComponent(AuthOverviewComponent);
       component = fixture.componentInstance;
       service = TestBed.inject(AuthenticationService);
