@@ -28,7 +28,11 @@
     "d3": "^7.9.0",
     "rxjs": "~7.8.1",
     "tslib": "^2.7.0",
+<<<<<<< HEAD
     "zone.js": "~0.15.0",
+=======
+    "zone.js": "~0.14.0",
+>>>>>>> 623adf3d11061e1f89e5f257f9781ea9accaf7e7
     "@ngrx/operators": "^18.0.2"
   },
   "devDependencies": {
@@ -43,8 +47,13 @@
     "@ngrx/eslint-plugin": "^18.0.2",
     "@types/d3": "^7.4.3",
     "@types/jasmine": "~5.1.4",
+<<<<<<< HEAD
     "@typescript-eslint/eslint-plugin": "^8.4.0",
     "@typescript-eslint/parser": "^8.4.0",
+=======
+    "@typescript-eslint/eslint-plugin": "^8.5.0",
+    "@typescript-eslint/parser": "^8.5.0",
+>>>>>>> 623adf3d11061e1f89e5f257f9781ea9accaf7e7
     "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
@@ -56,10 +65,17 @@
     "karma-firefox-launcher": "^2.1.3",
     "karma-jasmine": "~5.1.0",
     "karma-jasmine-html-reporter": "~2.1.0",
+<<<<<<< HEAD
     "ng-mocks": "^14.13.1",
     "prettier": "^3.3.3",
     "prettier-eslint": "^16.3.0",
     "puppeteer": "^23.3.0",
     "typescript": "~5.5.4"
+=======
+    "prettier": "^3.3.3",
+    "prettier-eslint": "^16.3.0",
+    "puppeteer": "^23.3.0",
+    "typescript": "~5.4.5"
+>>>>>>> 623adf3d11061e1f89e5f257f9781ea9accaf7e7
   }
 }
