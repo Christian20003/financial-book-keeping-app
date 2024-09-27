@@ -20,6 +20,26 @@
     }
 }
 
+@mixin info-button ($color: colors.$lime-green, $bg-color: colors.$white, $color-active: colors.$forest-green){
+    background-color: $bg-color;
+    color: $color;
+    border-color: $color;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.5s, background-color 0.1s;
+
+    &:where(:hover, :focus){
+        transform: translateY(-10px);
+        background-color: $color;
+        color: $bg-color;
+        box-shadow: 10px 10px rgb(38, 38, 38);
+    }
+
+    &:active{
+        background-color: $color-active;
+    }
+}
+
 @mixin button-disabled(){
     background-color: colors.$white;
     color: colors.$grey;

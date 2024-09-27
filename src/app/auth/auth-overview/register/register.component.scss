@@ -1,0 +1,62 @@
+@use '../../../shared/styles/text.scss';
+@use '../../../shared/styles/button.scss';
+@use '../../../shared/styles/container.scss';
+@use '../../../shared/styles/colors.scss';
+
+$desktop-screen-width: 26rem;
+
+#register-form{
+    display: flex;
+    flex-flow: column;
+    flex-wrap: nowrap;
+    flex: content;
+    gap: 2rem;
+    
+    .relative-container{
+        position: relative;
+
+        .input{
+            @include container.input-container();
+            @include text.description();
+        }
+
+        #label-email, #label-password{
+            @include container.label-container($top: -4px);
+            @include text.label();
+        }
+
+        // Enables the moving-up animations for the labels
+        #email:where(:focus, .ng-dirty) ~ #label-email{
+            @media (min-width: $desktop-screen-width) {
+                transform: translate(50%, -65%);
+            }
+           transform: translate(0, -65%);
+        }
+
+        // Enables the moving-up animations for the labels
+        #password:where(:focus, .ng-dirty) ~ #label-password{
+            @media (min-width: $desktop-screen-width) {
+                transform: translate(60%, -65%);
+            }
+           transform: translate(0, -65%);
+        }
+
+        .icon{
+            @include container.svg-label-container();
+        }
+
+        .missing{
+            position: absolute;
+            margin: -2rem 0;
+        }
+
+    }
+
+    
+    #register-button{
+        @include button.info-button();
+        @include text.description($align: center, $color: colors.$lime-green);
+        padding: 1rem 2rem;
+    }
+
+}
