@@ -8,6 +8,7 @@ import { EffectsModule } from '@ngrx/effects';
 import { AuthModule } from './auth/auth.module';
 import { userReducer } from './shared/stores/UserStore/User.reducer';
 import { userEffects } from './shared/stores/UserStore/User.effects';
+import { DashboardModule } from './dashboard/dashboard.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -15,6 +16,7 @@ import { userEffects } from './shared/stores/UserStore/User.effects';
     BrowserModule,
     AppRoutingModule,
     AuthModule,
+    DashboardModule,
     StoreModule.forRoot({ user: userReducer }, {}),
     EffectsModule.forRoot([userEffects]),
   ],

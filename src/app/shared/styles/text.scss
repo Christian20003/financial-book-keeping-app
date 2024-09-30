@@ -3,6 +3,8 @@
 $font-family: 'Ubuntu', system-ui, sans-serif;
 $desktop-header-font-size: 32pt;
 $mobile-header-font-size: 26pt;
+$desktop-nav-font-size: 18pt;
+$mobile-nav-font-size: 16pt;
 $desktop-text-font-size: 14pt;
 $mobile-text-font-size: 12pt;
 $desktop-hint-font-size: 10pt;
@@ -26,6 +28,16 @@ $desktop-screen-width: 700px;
 
     @media (min-width: $desktop-screen-width) {
         font-size: $desktop-header-font-size;   
+    }
+}
+
+// This mixin defines the style for a nav element
+@mixin nav ($align: center, $weight: 120, $text-decoration: none, $color: colors.$black){
+    @include text-style($align, $weight, $text-decoration, $color);
+    font-size: $mobile-nav-font-size;
+
+    @media (min-width: $desktop-screen-width) {
+        font-size: $desktop-nav-font-size;   
     }
 }
 
