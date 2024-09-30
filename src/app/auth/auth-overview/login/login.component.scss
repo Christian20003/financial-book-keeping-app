@@ -26,7 +26,7 @@ $desktop-screen-width: 26rem;
         // Enables the moving-up animations for the labels
         #email:where(:focus, .ng-dirty) ~ #label-email{
             @media (min-width: $desktop-screen-width) {
-                transform: translate(50%, -65%);
+                transform: translate(38%, -65%);
             }
            transform: translate(0, -65%);
         }

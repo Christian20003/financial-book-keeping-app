@@ -29,6 +29,13 @@ export class AuthOverviewComponent {
   // Saves the potencial email address entered by the user during password reset
   email = '';
 
+  // All text values which are used in this component.
+  text = {
+    loginButton: 'Anmelden',
+    registerButton: 'Registrieren',
+    title: 'Willkommen bei der FinBoKeApp',
+  };
+
   constructor(
     private router: Router,
     private store: Store,

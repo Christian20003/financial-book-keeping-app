@@ -1,10 +1,5 @@
-@use './shared/styles/text.scss' as text;
 @use './shared/styles/colors.scss' as colors;
 @use './shared/styles/container.scss' as container;
-
-#title{
-    @include text.header();
-}
 
 $max-screen-width: 60rem;
 
