@@ -4,8 +4,8 @@ import { DashboardOverviewComponent } from './dashboard-overview/dashboard-overv
 import { NavbarComponent } from '../shared/components/navbar/navbar.component';
 
 @NgModule({
-  declarations: [NavbarComponent, DashboardOverviewComponent],
-  imports: [CommonModule],
+  declarations: [DashboardOverviewComponent],
+  imports: [CommonModule, NavbarComponent],
   exports: [DashboardOverviewComponent],
 })
 export class DashboardModule {}
