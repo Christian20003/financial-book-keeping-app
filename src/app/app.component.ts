@@ -33,7 +33,7 @@ export class AppComponent {
           id: 1,
           name: 'Günther',
           email: 'test',
-          imagePath: 'hthth',
+          imagePath: '',
           session: {
             token: 'ggggg',
             expire: 44,

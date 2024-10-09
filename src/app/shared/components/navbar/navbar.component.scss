@@ -29,6 +29,7 @@ $transition-time: 0.5s;
         display: flex;
         gap: 0.4rem;
         align-items: center;
+        cursor: pointer;
         @include text.description($color: colors.$white);
 
         .icon {
