@@ -79,5 +79,17 @@ $transition-time: 0.5s;
                 opacity: 50%;
             }
         }
-    }    
+    }
+    
+    .active {
+        color: colors.$moderate-red;
+
+        .icon {
+            fill: colors.$moderate-red;
+        }
+
+        .description::after {
+            transform: scaleX(1);
+        }
+    }
 }

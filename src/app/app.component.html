@@ -1,3 +1,9 @@
+@if (isLoggedIn) {
+  <app-navbar></app-navbar>
+} @else {
+  <!-- TODO: Delete after development -->
+  <button (click)="goToDashboard()">Click</button>
+}
 <router-outlet></router-outlet>
 
 <div class="small-shape-left"></div>

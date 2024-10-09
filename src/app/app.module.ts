@@ -9,9 +9,11 @@ import { AuthModule } from './auth/auth.module';
 import { userReducer } from './shared/stores/UserStore/User.reducer';
 import { userEffects } from './shared/stores/UserStore/User.effects';
 import { DashboardModule } from './dashboard/dashboard.module';
+import { NavbarComponent } from './shared/components/navbar/navbar.component';
+import { LogoComponent } from './shared/components/logo/logo.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NavbarComponent, LogoComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

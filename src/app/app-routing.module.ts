@@ -4,7 +4,6 @@ import { AuthOverviewComponent } from './auth/auth-overview/auth-overview.compon
 import { DashboardOverviewComponent } from './dashboard/dashboard-overview/dashboard-overview.component';
 
 const routes: Routes = [
-  { path: '', component: DashboardOverviewComponent },
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   // TODO: Is there a smarter solution?
   {
@@ -13,6 +12,10 @@ const routes: Routes = [
     children: [{ path: 'resetPassword', component: AuthOverviewComponent }],
   },
   { path: 'register', component: AuthOverviewComponent },
+  // TODO: Replace components
+  { path: 'dashboard', component: DashboardOverviewComponent },
+  { path: 'finances', component: DashboardOverviewComponent },
+  { path: 'accounts', component: DashboardOverviewComponent },
 ];
 
 @NgModule({
