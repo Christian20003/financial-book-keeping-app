@@ -1,71 +1,83 @@
 @use '../../styles/colors.scss';
 @use '../../styles/text.scss';
 
+$transition-time: 0.5s;
+
 #container {
     display: flex;
     gap: 1.6rem;
     justify-content: center;
-    background-color: colors.$white;
+    background-color: colors.$black;
+    box-shadow: 0 0.2rem 0.4rem 0 colors.$very-dark-gray, 
+                0 0.1rem 0.1rem 0 colors.$very-dark-gray;
     position: sticky;
-    margin: -8px;
+    // Delete margin added by the browser
+    margin: -0.5rem;
 
+    $boundary: 1.0rem;
     :first-child {
         padding-top: 0.2rem;
-        margin-left: 0.5rem;
+        margin-left: $boundary;
         margin-right: auto;
     }
     :last-child {
-        padding-top: 0.2rem;
-        margin-right: 0.5rem;
+        margin-right: $boundary;
         margin-left: auto;
     }
 
     .nav-elem {
         display: flex;
         gap: 0.4rem;
-        transition: all 0.5s;
-        @include text.description();
-        //border: 2px green solid;
-
-        .description {
-            padding-top: 0.6rem;
-            margin-top: 0.3rem;
-            //border: 2px blue solid;
-        }
+        align-items: center;
+        @include text.description($color: colors.$white);
 
         .icon {
-            fill: colors.$black;
-            padding-top: 0.6rem;
-            width: 25px;
-            height: 25px;
-            transition: fill 0.5s;
-            //border: 2px red solid;
+            fill: colors.$white;
+            width: 1.6rem;
+            transition: fill $transition-time;
+        }
+
+        .description {
+            transition: color $transition-time;
         }
 
         .description::after {
             content: '';
-            position: relative;
             display: block;
-            width: 100%;
             transform: scaleX(0);
-            height: 2px;
-            bottom: 0;
-            left: 0;
+            height: 0.15rem;
             background-color: colors.$moderate-red;
-            transition: transform 0.25s ease-out;
-        }
-    }
-
-    .nav-elem:hover {
-        color: colors.$moderate-red;
-
-        .icon {
-            fill: colors.$moderate-red;
+            transition: transform $transition-time ease-out;
         }
 
-        .description::after {
-            transform: scaleX(1);
+        .profile {
+            width: 2.5rem;
+            height: 2.5rem;
+            line-height: 2.15rem;
+            border-radius: 50%;
+            text-align: center;
+            margin: auto;
+            background-color: colors.$light-grey;
+            color: colors.$moderate-red;
+            transition: opacity $transition-time;
         }
-    }
+
+        &:where(:hover, :focus) {
+            .icon {
+                fill: colors.$moderate-red;
+            }
     
+            .description {
+                color: colors.$moderate-red;
+            }
+    
+            .description::after {
+                transform: scaleX(1);
+            }
+
+            .profile {
+                opacity: 50%;
+            }
+        }
+    }    
 }
