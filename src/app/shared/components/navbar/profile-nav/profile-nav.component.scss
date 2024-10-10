@@ -1,0 +1,48 @@
+@use "../../../styles/colors.scss";
+@use '../../../styles/text.scss';
+
+$transition-time: 0.5s;
+
+.nav-container {
+    width: 11rem;
+    background-color: colors.$black;
+    border: 0.1rem colors.$moderate-red solid;
+    padding: 0.5rem 1.8rem 0.5rem 0.8rem;
+    list-style-type: none;
+    cursor: pointer;
+
+    .nav-elem {
+        display: flex;
+        gap: 0.5rem;
+        padding-left: 0;
+        transition: border-left $transition-time, padding $transition-time;
+
+        &:not(:last-child) {
+            margin-bottom: 0.8rem;
+        }
+        
+        .nav-elem-icon {
+            fill: colors.$white;
+            width: 1.6rem;
+            transition: fill $transition-time;
+        }
+
+        .nav-elem-link {
+            @include text.description($color: colors.$white);
+            transition: color $transition-time;
+        }
+
+        &:hover, &:focus {
+            border-left: 0.2rem colors.$moderate-red solid;
+            padding-left: 0.5rem;
+
+            .nav-elem-icon {
+                fill: colors.$moderate-red;
+            }
+
+            .nav-elem-link {
+                color: colors.$moderate-red;
+            }
+        }
+    }
+}

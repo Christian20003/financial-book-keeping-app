@@ -47,11 +47,21 @@
     </svg>
     <p class="description">Konten</p>
   </a>
-  <a class="nav-elem">
+  <a
+    class="nav-elem"
+    role="button"
+    (click)="onProfile()"
+    (keydown.p)="onProfile()"
+    tabindex="0">
     @if (imagePath !== '') {
-      <img class="profile" [src]="imagePath" alt="" />
+      <img class="profile-btn" [src]="imagePath" alt="" />
     } @else {
-      <p class="profile">{{ firstLetter }}</p>
+      <p class="profile-btn">{{ firstLetter }}</p>
     }
   </a>
 </nav>
+@if (activeProfile) {
+  <div id="profile-box" [@moveDown]>
+    <app-profile-nav></app-profile-nav>
+  </div>
+}
