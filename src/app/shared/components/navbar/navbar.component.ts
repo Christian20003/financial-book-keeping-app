@@ -14,6 +14,12 @@ export class NavbarComponent {
   firstLetter: string = 'A';
   activeProfile: boolean = false;
 
+  text = {
+    dashboard: 'Dashboard',
+    finance: 'Haushaltsbuch',
+    accounts: 'Konten',
+  };
+
   constructor(private store: Store) {
     const data = this.store.select(selectUser);
     data.subscribe(state => {

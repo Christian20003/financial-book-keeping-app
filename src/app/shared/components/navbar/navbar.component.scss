@@ -3,7 +3,7 @@
 
 $transition-time: 0.5s;
 
-#container {
+.nav-container {
     display: flex;
     gap: 1.6rem;
     justify-content: center;
@@ -11,7 +11,6 @@ $transition-time: 0.5s;
     box-shadow: 0 0.2rem 0.4rem 0 colors.$very-dark-gray, 
                 0 0.1rem 0.1rem 0 colors.$very-dark-gray;
     position: sticky;
-    // Keep, otherwise 'sticky' does not work
     top: 0;
     // Delete margin added by the browser
     margin: -0.5rem;
@@ -34,23 +33,23 @@ $transition-time: 0.5s;
         cursor: pointer;
         @include text.description($color: colors.$white);
 
-        .icon {
+        .nav-icon {
             fill: colors.$white;
             width: 1.6rem;
             transition: fill $transition-time;
         }
 
-        .description {
+        .nav-description {
             transition: color $transition-time;
-        }
 
-        .description::after {
-            content: '';
-            display: block;
-            transform: scaleX(0);
-            height: 0.15rem;
-            background-color: colors.$moderate-red;
-            transition: transform $transition-time ease-out;
+            &::after {
+                content: '';
+                display: block;
+                transform: scaleX(0);
+                height: 0.15rem;
+                background-color: colors.$moderate-red;
+                transition: transform $transition-time ease-out;
+            }
         }
 
         .profile-btn {
@@ -66,16 +65,16 @@ $transition-time: 0.5s;
         }
 
         &:where(:hover, :focus) {
-            .icon {
+            .nav-icon {
                 fill: colors.$moderate-red;
             }
     
-            .description {
+            .nav-description {
                 color: colors.$moderate-red;
-            }
-    
-            .description::after {
-                transform: scaleX(1);
+
+                &::after {
+                    transform: scaleX(1);
+                }
             }
 
             .profile-btn {
@@ -87,17 +86,17 @@ $transition-time: 0.5s;
     .active {
         color: colors.$moderate-red;
 
-        .icon {
+        .nav-icon {
             fill: colors.$moderate-red;
         }
 
-        .description::after {
+        .nav-description::after {
             transform: scaleX(1);
         }
     }
 }
 
-#profile-box {
+.profile-box {
     position: sticky;
     top: 3.4rem;
     float: right;
