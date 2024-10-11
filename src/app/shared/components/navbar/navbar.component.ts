@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../stores/UserStore/User.selector';
-import { moveDown } from '../..';
+import { moveDown, moveLeftToRight } from '../..';
 
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
-  animations: [moveDown],
+  animations: [moveDown, moveLeftToRight],
 })
 export class NavbarComponent {
   public imagePath: string = '';

@@ -1,60 +1,84 @@
 @use '../../styles/colors.scss';
 
-.nav-container {
-    display: flex;
-    gap: 1.6rem;
-    justify-content: center;
-    background-color: colors.$black;
-    box-shadow: 0 0.2rem 0.4rem 0 colors.$very-dark-gray, 
-                0 0.1rem 0.1rem 0 colors.$very-dark-gray;
+$desktop-screen-width: 46rem;
+$shadow-effect: rgba(0, 0, 0, 0.3) 0 1.18rem 2.3rem, rgba(0, 0, 0, 0.22) 0 0.9rem 0.9rem;
+
+nav {
     position: sticky;
     top: 0;
     // Delete margin added by the browser
     margin: -0.5rem;
+    box-shadow: $shadow-effect;
 
-    $boundary: 1.0rem;
-    :first-child {
-        padding-top: 0.2rem;
-        margin-left: $boundary;
-        margin-right: auto;
-    }
-    :last-child {
-        margin-right: $boundary;
-        margin-left: auto;
-    }
-
-    .nav-elem {
+    .nav-container {
         display: flex;
-        align-items: center;
-        text-decoration: none;
-        cursor: pointer;
+        gap: 1.6rem;
+        justify-content: center;
+        background-color: colors.$black;
 
-        .profile-btn {
-            width: 2.5rem;
-            height: 2.5rem;
-            line-height: 2.15rem;
-            border-radius: 50%;
-            text-align: center;
-            margin: auto;
-            background-color: colors.$light-grey;
-            color: colors.$moderate-red;
-            transition: opacity 0.5s;
+        $boundary: 1.0rem;
+        :first-child {
+            padding-top: 0.2rem;
+            margin-left: $boundary;
+            margin-right: auto;
+        }
+        :last-child:not(.profile-box) {
+            margin-right: $boundary;
+            margin-left: auto;
         }
 
-        &:where(:hover, :focus) {
+        .nav-elem {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            cursor: pointer;
+
             .profile-btn {
-                opacity: 50%;
+                width: 2.5rem;
+                height: 2.5rem;
+                line-height: 2.15rem;
+                border-radius: 50%;
+                text-align: center;
+                margin: auto;
+                background-color: colors.$light-grey;
+                color: colors.$moderate-red;
+                transition: opacity 0.5s;
+            }
+
+            &:where(:hover, :focus) {
+                .profile-btn {
+                    opacity: 50%;
+                }
             }
         }
     }
+    .vertical-secondary-nav, .vertical-primary-nav {
+        position: absolute;
+        top: 4rem;
+        width: 11rem;
+        background-color: colors.$black;
+        border: 0.1rem colors.$moderate-red solid;
+        padding: 0.5rem 1.8rem 0.5rem 0.8rem;
+        box-shadow: $shadow-effect;
+    }
+
+    .vertical-secondary-nav {
+        right: 1rem;
+    } 
 }
 
-.profile-box {
-    position: sticky;
-    top: 4rem;
-    float: right;
-    width: 11rem;
-    background-color: colors.$black;
-    border: 0.1rem colors.$moderate-red solid;
-    padding: 0.5rem 1.8rem 0.5rem 0.8rem;
+@media (min-width: $desktop-screen-width) {
+    .vertical-primary-nav {
+        visibility: hidden;
+    }
+}
+
+@media (max-width: $desktop-screen-width) {
+    .can-hide {
+        display: none;
+    }
+
+    .vertical-secondary-nav {
+        visibility: hidden;
+    }
 }
