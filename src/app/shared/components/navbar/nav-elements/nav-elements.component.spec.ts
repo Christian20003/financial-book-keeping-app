@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProfileNavComponent } from './profile-nav.component';
+import { NavElementsComponent } from './nav-elements.component';
 
-xdescribe('ProfileNavComponent', () => {
-  let component: ProfileNavComponent;
-  let fixture: ComponentFixture<ProfileNavComponent>;
+xdescribe('NavElementsComponent', () => {
+  let component: NavElementsComponent;
+  let fixture: ComponentFixture<NavElementsComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ProfileNavComponent],
+      imports: [NavElementsComponent],
     }).compileComponents();
 
-    fixture = TestBed.createComponent(ProfileNavComponent);
+    fixture = TestBed.createComponent(NavElementsComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -10,15 +10,9 @@ import { moveDown } from '../..';
   animations: [moveDown],
 })
 export class NavbarComponent {
-  imagePath: string = '';
-  firstLetter: string = 'A';
-  activeProfile: boolean = false;
-
-  text = {
-    dashboard: 'Dashboard',
-    finance: 'Haushaltsbuch',
-    accounts: 'Konten',
-  };
+  public imagePath: string = '';
+  public firstLetter: string = 'A';
+  public activeProfile: boolean = false;
 
   constructor(private store: Store) {
     const data = this.store.select(selectUser);

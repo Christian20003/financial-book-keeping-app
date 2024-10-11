@@ -1,7 +1,4 @@
 @use '../../styles/colors.scss';
-@use '../../styles/text.scss';
-
-$transition-time: 0.5s;
 
 .nav-container {
     display: flex;
@@ -28,29 +25,9 @@ $transition-time: 0.5s;
 
     .nav-elem {
         display: flex;
-        gap: 0.4rem;
         align-items: center;
+        text-decoration: none;
         cursor: pointer;
-        @include text.description($color: colors.$white);
-
-        .nav-icon {
-            fill: colors.$white;
-            width: 1.6rem;
-            transition: fill $transition-time;
-        }
-
-        .nav-description {
-            transition: color $transition-time;
-
-            &::after {
-                content: '';
-                display: block;
-                transform: scaleX(0);
-                height: 0.15rem;
-                background-color: colors.$moderate-red;
-                transition: transform $transition-time ease-out;
-            }
-        }
 
         .profile-btn {
             width: 2.5rem;
@@ -61,43 +38,23 @@ $transition-time: 0.5s;
             margin: auto;
             background-color: colors.$light-grey;
             color: colors.$moderate-red;
-            transition: opacity $transition-time;
+            transition: opacity 0.5s;
         }
 
         &:where(:hover, :focus) {
-            .nav-icon {
-                fill: colors.$moderate-red;
-            }
-    
-            .nav-description {
-                color: colors.$moderate-red;
-
-                &::after {
-                    transform: scaleX(1);
-                }
-            }
-
             .profile-btn {
                 opacity: 50%;
             }
-        }
-    }
-    
-    .active {
-        color: colors.$moderate-red;
-
-        .nav-icon {
-            fill: colors.$moderate-red;
-        }
-
-        .nav-description::after {
-            transform: scaleX(1);
         }
     }
 }
 
 .profile-box {
     position: sticky;
-    top: 3.4rem;
+    top: 4rem;
     float: right;
+    width: 11rem;
+    background-color: colors.$black;
+    border: 0.1rem colors.$moderate-red solid;
+    padding: 0.5rem 1.8rem 0.5rem 0.8rem;
 }

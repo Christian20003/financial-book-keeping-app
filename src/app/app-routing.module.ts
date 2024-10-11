@@ -16,6 +16,9 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardOverviewComponent },
   { path: 'finances', component: DashboardOverviewComponent },
   { path: 'accounts', component: DashboardOverviewComponent },
+  { path: 'profile', component: DashboardOverviewComponent },
+  { path: 'settings', component: DashboardOverviewComponent },
+  { path: 'logout', component: DashboardOverviewComponent },
 ];
 
 @NgModule({

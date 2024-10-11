@@ -11,14 +11,14 @@ import { userEffects } from './shared/stores/UserStore/User.effects';
 import { DashboardModule } from './dashboard/dashboard.module';
 import { NavbarComponent } from './shared/components/navbar/navbar.component';
 import { LogoComponent } from './shared/components/logo/logo.component';
-import { ProfileNavComponent } from './shared/components/navbar/profile-nav/profile-nav.component';
+import { NavElementsComponent } from './shared/components/navbar/nav-elements/nav-elements.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     LogoComponent,
-    ProfileNavComponent,
+    NavElementsComponent,
   ],
   imports: [
     BrowserModule,
