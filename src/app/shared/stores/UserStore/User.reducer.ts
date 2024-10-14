@@ -1,5 +1,6 @@
 import { createReducer, on } from '@ngrx/store';
 import {
+  deleteUser,
   setEmail,
   setUser,
   setUserImagePath,
@@ -77,5 +78,6 @@ export const userReducer = createReducer(
       ...state,
       session: action.session,
     })
-  )
+  ),
+  on(deleteUser, (): User => initialState)
 );

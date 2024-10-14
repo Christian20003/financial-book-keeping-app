@@ -11,7 +11,7 @@ describe('User-Store Effects - Unit Tests', () => {
   let actions$: Observable<Action>;
   let effects: userEffects;
   let store: MockStore;
-  let localStoreMock: { [key: string]: string };
+  let localStoreMock: { [key: string]: string | null };
 
   const userState = {
     id: 5,
@@ -53,6 +53,11 @@ describe('User-Store Effects - Unit Tests', () => {
     spyOn(Object.getPrototypeOf(localStorage), 'setItem').and.callFake(
       (key: string, value: string) => {
         localStoreMock[key] = value;
+      }
+    );
+    spyOn(Object.getPrototypeOf(localStorage), 'removeItem').and.callFake(
+      (key: string) => {
+        localStoreMock[key] = null;
       }
     );
 
@@ -97,6 +102,15 @@ describe('User-Store Effects - Unit Tests', () => {
         user: initialState,
       });
     });
+  });
+
+  it('U-Test-5: deleteUserData should delete the user object on local storage', () => {
+    localStoreMock['user'] = 'dummy value';
+    actions$ = of({ type: '[User] Delete' });
+    effects.deleteUserData.subscribe();
+
+    const data = localStorage.getItem('user');
+    expect(data).toBeFalsy();
   });
 
   afterEach(() => {

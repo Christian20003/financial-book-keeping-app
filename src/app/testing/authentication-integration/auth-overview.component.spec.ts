@@ -1,6 +1,6 @@
 import {
-  HttpClientTestingModule,
   HttpTestingController,
+  provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import {
   ComponentFixture,
@@ -33,14 +33,13 @@ import {
   getNativeElements,
   triggerInput,
 } from '../testing-support';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, provideHttpClient } from '@angular/common/http';
 
 describe('AuthOverviewComponent', () => {
   let component: AuthOverviewComponent;
   let fixture: ComponentFixture<AuthOverviewComponent>;
   let router: Router;
   let store: Store;
-  let service: AuthenticationService;
   let httpTestingController: HttpTestingController;
   const user = {
     id: 1,
@@ -51,6 +50,11 @@ describe('AuthOverviewComponent', () => {
       token: '3435234',
       expire: 44,
     },
+  };
+  const requestPaths = {
+    login: 'https://backend/login',
+    register: 'https://backend/register',
+    code: 'https://backend/login/code',
   };
 
   beforeEach(() => {
@@ -67,16 +71,18 @@ describe('AuthOverviewComponent', () => {
       imports: [
         BrowserAnimationsModule,
         RouterModule.forRoot(authRoutes),
-        HttpClientTestingModule,
         StoreModule.forRoot({ user: userReducer }, {}),
         EffectsModule.forRoot([userEffects]),
         ReactiveFormsModule,
       ],
-      providers: [AuthenticationService],
+      providers: [
+        AuthenticationService,
+        provideHttpClient(),
+        provideHttpClientTesting(),
+      ],
     });
     fixture = TestBed.createComponent(AuthOverviewComponent);
     component = fixture.componentInstance;
-    service = TestBed.inject(AuthenticationService);
     store = TestBed.inject(Store);
     router = TestBed.inject(Router);
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -119,7 +125,7 @@ describe('AuthOverviewComponent', () => {
     fixture.detectChanges();
 
     // Define the response of the HTTP request
-    const req = httpTestingController.expectOne(service.LOGIN_PATH);
+    const req = httpTestingController.expectOne(requestPaths.login);
     user.email = 'test@doener.com';
     req.flush(user);
 
@@ -170,7 +176,7 @@ describe('AuthOverviewComponent', () => {
 
     // Define HTTP request
     const postEmailReq = httpTestingController.expectOne(
-      service.CODE_PATH,
+      requestPaths.code,
       'Post email address request'
     );
     postEmailReq.flush(user.email);
@@ -193,7 +199,7 @@ describe('AuthOverviewComponent', () => {
 
     // Define HTTP request
     const postCodeReq = httpTestingController.expectOne(
-      service.CODE_PATH,
+      requestPaths.code,
       'Post security code request'
     );
     postCodeReq.flush('Success');
@@ -236,7 +242,7 @@ describe('AuthOverviewComponent', () => {
     fixture.detectChanges();
 
     // Define the response of the HTTP request
-    const req = httpTestingController.expectOne(service.LOGIN_PATH);
+    const req = httpTestingController.expectOne(requestPaths.login);
     const error = new HttpErrorResponse({ status: 406 });
     req.flush('Ivalid Credentials', error);
     fixture.detectChanges();
@@ -284,7 +290,7 @@ describe('AuthOverviewComponent', () => {
 
     // Define HTTP request
     const postEmailReq = httpTestingController.expectOne(
-      service.CODE_PATH,
+      requestPaths.code,
       'Post email address request'
     );
     const error = new HttpErrorResponse({ status: 404 });
@@ -334,7 +340,7 @@ describe('AuthOverviewComponent', () => {
 
     // Define HTTP request
     const postEmailReq = httpTestingController.expectOne(
-      service.CODE_PATH,
+      requestPaths.code,
       'Post email address request'
     );
     postEmailReq.flush(user.email);
@@ -357,7 +363,7 @@ describe('AuthOverviewComponent', () => {
 
     // Define HTTP request
     const postCodeReq = httpTestingController.expectOne(
-      service.CODE_PATH,
+      requestPaths.code,
       'Post security code request'
     );
     const error = new HttpErrorResponse({ status: 500 });

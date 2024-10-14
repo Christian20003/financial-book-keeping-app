@@ -1,4 +1,5 @@
 import {
+  deleteUser,
   setEmail,
   setUser,
   setUserImagePath,
@@ -55,7 +56,17 @@ describe('User-Store Reducer - Unit Tests', () => {
     expect(state.session).toBe(newState.session);
   });
 
-  it('U-Test-6: should ignore an unkown action', () => {
+  it('U-Test-6: deleteUser should set the user object to default', () => {
+    const actionSet = setUser({ user: newState });
+    const stateFill = userReducer(initialState, actionSet);
+
+    const actionDelete = deleteUser();
+    const stateDefault = userReducer(stateFill, actionDelete);
+
+    expect(stateDefault).toBe(initialState);
+  });
+
+  it('U-Test-7: should ignore an unkown action', () => {
     const action = { type: 'Unknown' };
     const state = userReducer(initialState, action);
 

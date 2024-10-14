@@ -9,9 +9,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { SmallErrorMsgComponent } from '../shared/components/small-error-msg/small-error-msg.component';
 import { LoadingComponent } from '../shared/components/loading/loading.component';
 import { AuthRoutingModule } from './auth-routing-module';
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { GetCodeComponent } from './auth-overview/get-code/get-code.component';
 import { SetCodeComponent } from './auth-overview/set-code/set-code.component';
+import { authInterceptor } from './auth-interceptor';
 
 @NgModule({
   declarations: [
@@ -29,8 +30,8 @@ import { SetCodeComponent } from './auth-overview/set-code/set-code.component';
     BrowserAnimationsModule,
     ReactiveFormsModule,
     AuthRoutingModule,
-    HttpClientModule,
   ],
+  providers: [provideHttpClient(withInterceptors([authInterceptor]))],
   exports: [AuthOverviewComponent],
 })
 export class AuthModule {}
