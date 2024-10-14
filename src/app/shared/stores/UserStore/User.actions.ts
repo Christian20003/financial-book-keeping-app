@@ -9,6 +9,11 @@ import { Session, User } from './User.reducer';
 export const setUser = createAction('[User] Set', props<{ user: User }>());
 
 /**
+ * This action can be used to delete the user-object in the store.
+ */
+export const deleteUser = createAction('[User] Delete');
+
+/**
  * This action can be used to change the name of the {@link User} object.
  *
  * @param name - The new name of the user.
