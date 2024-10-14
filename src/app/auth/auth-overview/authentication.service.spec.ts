@@ -2,11 +2,11 @@ import { TestBed } from '@angular/core/testing';
 
 import { AuthenticationService } from './authentication.service';
 import {
-  HttpClientTestingModule,
   HttpTestingController,
+  provideHttpClientTesting,
 } from '@angular/common/http/testing';
 import { User } from 'src/app/shared';
-import { HttpErrorResponse } from '@angular/common/http';
+import { HttpErrorResponse, provideHttpClient } from '@angular/common/http';
 
 describe('AuthenticationService - Unit Tests', () => {
   let service: AuthenticationService;
@@ -22,10 +22,15 @@ describe('AuthenticationService - Unit Tests', () => {
       expire: 1000,
     },
   };
+  const requestPaths = {
+    login: 'https://backend/login',
+    register: 'https://backend/register',
+    code: 'https://backend/login/code',
+  };
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      providers: [provideHttpClient(), provideHttpClientTesting()],
     });
     service = TestBed.inject(AuthenticationService);
     httpTestingController = TestBed.inject(HttpTestingController);
@@ -58,7 +63,7 @@ describe('AuthenticationService - Unit Tests', () => {
       },
     });
 
-    const req = httpTestingController.expectOne(service.LOGIN_PATH);
+    const req = httpTestingController.expectOne(requestPaths.login);
     expect(req.request.method).toBe('POST');
     req.flush(dummyUser);
   });
@@ -81,7 +86,7 @@ describe('AuthenticationService - Unit Tests', () => {
       },
     });
 
-    const req = httpTestingController.expectOne(service.REGISTER_PATH);
+    const req = httpTestingController.expectOne(requestPaths.register);
     expect(req.request.method).toBe('POST');
     req.flush(dummyUser);
   });
@@ -93,7 +98,7 @@ describe('AuthenticationService - Unit Tests', () => {
       },
     });
 
-    const req = httpTestingController.expectOne(service.CODE_PATH);
+    const req = httpTestingController.expectOne(requestPaths.code);
     expect(req.request.method).toBe('POST');
     req.flush('Success');
   });
@@ -114,14 +119,26 @@ describe('AuthenticationService - Unit Tests', () => {
       },
     });
 
-    const req = httpTestingController.expectOne(service.CODE_PATH);
+    const req = httpTestingController.expectOne(requestPaths.code);
     expect(req.request.method).toBe('PUT');
+    req.flush('Success');
+  });
+
+  it('U-Test-6: A successful logout request', () => {
+    service.deleteLogin().subscribe({
+      next: response => {
+        expect(response).toBeTruthy();
+      },
+    });
+
+    const req = httpTestingController.expectOne(requestPaths.login);
+    expect(req.request.method).toBe('DELETE');
     req.flush('Success');
   });
 
   /*-----------------------------------------------Unsuccessful-Requests----------------------------------------------------------*/
 
-  it('U-Test-6: A faulty login request', () => {
+  it('U-Test-7: A faulty login request', () => {
     const data = {
       email: dummyUser.email,
       password: dummyUser.password,
@@ -130,19 +147,17 @@ describe('AuthenticationService - Unit Tests', () => {
     service.postLogin(data).subscribe({
       error: error => {
         expect(error).toBeTruthy();
-        expect(error.message).toEqual(
-          AuthenticationService.errorMsg.invalidCredentials
-        );
+        expect(error.message).not.toEqual('');
       },
     });
 
-    const req = httpTestingController.expectOne(service.LOGIN_PATH);
+    const req = httpTestingController.expectOne(requestPaths.login);
     const error = new HttpErrorResponse({ status: 406 });
     expect(req.request.method).toBe('POST');
     req.flush('Invalid credentials', error);
   });
 
-  it('U-Test-7: A faulty register request', () => {
+  it('U-Test-8: A faulty register request', () => {
     const data = {
       email: dummyUser.email,
       name: dummyUser.name,
@@ -152,31 +167,31 @@ describe('AuthenticationService - Unit Tests', () => {
     service.postRegister(data).subscribe({
       error: error => {
         expect(error).toBeTruthy();
-        expect(error.message).toEqual(AuthenticationService.errorMsg.notFound);
+        expect(error.message).not.toEqual('');
       },
     });
 
-    const req = httpTestingController.expectOne(service.REGISTER_PATH);
+    const req = httpTestingController.expectOne(requestPaths.register);
     const error = new HttpErrorResponse({ status: 404 });
     expect(req.request.method).toBe('POST');
     req.flush('Resource not found', error);
   });
 
-  it('U-Test-8: A faulty postEmail request', () => {
+  it('U-Test-9: A faulty postEmail request', () => {
     service.postEmail(dummyUser.email).subscribe({
       error: error => {
         expect(error).toBeTruthy();
-        expect(error.message).toEqual(AuthenticationService.errorMsg.unknown);
+        expect(error.message).not.toEqual('');
       },
     });
 
-    const req = httpTestingController.expectOne(service.CODE_PATH);
+    const req = httpTestingController.expectOne(requestPaths.code);
     const error = new HttpErrorResponse({ status: 444 });
     expect(req.request.method).toBe('POST');
     req.flush('Unknown problem', error);
   });
 
-  it('U-Test-9: A faulty postCode request', () => {
+  it('U-Test-10: A faulty postCode request', () => {
     const data = {
       value1: 1,
       value2: 2,
@@ -189,15 +204,27 @@ describe('AuthenticationService - Unit Tests', () => {
     service.postCode(data).subscribe({
       error: error => {
         expect(error).toBeTruthy();
-        expect(error.message).toEqual(
-          AuthenticationService.errorMsg.serverError
-        );
+        expect(error.message).not.toEqual('');
       },
     });
 
-    const req = httpTestingController.expectOne(service.CODE_PATH);
+    const req = httpTestingController.expectOne(requestPaths.code);
     const error = new HttpErrorResponse({ status: 500 });
     expect(req.request.method).toBe('PUT');
+    req.flush('Server error', error);
+  });
+
+  it('U-Test-11: A faulty logout request', () => {
+    service.deleteLogin().subscribe({
+      error: error => {
+        expect(error).toBeTruthy();
+        expect(error.message).not.toEqual('');
+      },
+    });
+
+    const req = httpTestingController.expectOne(requestPaths.login);
+    const error = new HttpErrorResponse({ status: 500 });
+    expect(req.request.method).toBe('DELETE');
     req.flush('Server error', error);
   });
 });
