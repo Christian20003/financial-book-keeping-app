@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AuthOverviewComponent } from './auth/auth-overview/auth-overview.component';
 import { DashboardOverviewComponent } from './dashboard/dashboard-overview/dashboard-overview.component';
 
-const routes: Routes = [
+export const routes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
   // TODO: Is there a smarter solution?
   {

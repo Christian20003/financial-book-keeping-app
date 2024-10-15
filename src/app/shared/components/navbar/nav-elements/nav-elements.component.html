@@ -99,9 +99,11 @@
 } @else if (type === 'logout') {
   <a
     class="nav-elem"
-    routerLink="/logout"
-    routerLinkActive="active"
-    [ngClass]="borderAnimation ? 'border-animation' : 'underline-animation'">
+    [ngClass]="borderAnimation ? 'border-animation' : 'underline-animation'"
+    role="button"
+    tabindex="0"
+    (click)="onLogout()"
+    (keydown.enter)="onLogout()">
     <svg
       class="nav-elem-icon"
       viewBox="0 0 24 24"

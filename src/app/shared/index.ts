@@ -14,6 +14,7 @@ export {
   setEmail,
   setUserImagePath,
   setUserSession,
+  deleteUser,
 } from './stores/UserStore/User.actions';
 export {
   User,

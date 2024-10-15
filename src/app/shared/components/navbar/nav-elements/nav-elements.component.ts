@@ -1,4 +1,9 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AuthenticationService } from 'src/app/auth/auth-overview/authentication.service';
+import { loginPath } from 'src/app/auth/auth-routing-module';
+import { deleteUser } from 'src/app/shared/stores/UserStore/User.actions';
 
 @Component({
   selector: 'app-nav-elements',
@@ -17,4 +22,23 @@ export class NavElementsComponent {
     settings: 'Einstellungen',
     logout: 'Logout',
   };
+
+  constructor(
+    private authService: AuthenticationService,
+    private store: Store,
+    private router: Router
+  ) {}
+
+  onLogout(): void {
+    this.authService.deleteLogin().subscribe({
+      next: () => {
+        this.store.dispatch(deleteUser());
+        this.router.navigate([loginPath]);
+      },
+      error: error => {
+        // TODO: Show error
+        console.log(error);
+      },
+    });
+  }
 }

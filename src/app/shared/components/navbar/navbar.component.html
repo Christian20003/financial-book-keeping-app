@@ -15,7 +15,7 @@
       class="nav-elem"
       role="button"
       (click)="onProfile()"
-      (keydown.p)="onProfile()"
+      (keydown.enter)="onProfile()"
       tabindex="0">
       @if (imagePath !== '') {
         <img class="profile-btn" [src]="imagePath" alt="" />
