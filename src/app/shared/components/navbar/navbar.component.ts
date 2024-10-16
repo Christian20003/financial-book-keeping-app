@@ -11,7 +11,7 @@ import { moveDown, moveLeftToRight } from '../..';
 })
 export class NavbarComponent {
   public imagePath: string = '';
-  public firstLetter: string = 'A';
+  public firstLetter: string = '';
   public activeProfile: boolean = false;
 
   constructor(private store: Store) {
@@ -20,6 +20,8 @@ export class NavbarComponent {
       this.imagePath = state.imagePath;
       if (state.name != '') {
         this.firstLetter = state.name.charAt(0);
+      } else {
+        this.firstLetter = 'A';
       }
     });
   }

@@ -5,7 +5,7 @@ import {
   HttpRequest,
 } from '@angular/common/http';
 import { Observable, tap } from 'rxjs';
-import { User } from '../shared';
+import { Session, User } from '../shared';
 import { Router } from '@angular/router';
 import { inject } from '@angular/core';
 import { Store } from '@ngrx/store';
@@ -14,7 +14,6 @@ import {
   deleteUser,
   setUserSession,
 } from '../shared/stores/UserStore/User.actions';
-import { Session } from '../shared/stores/UserStore/User.reducer';
 
 /**
  * This function should intercept all requests sent to the backend of this application. It will append the authentication token
