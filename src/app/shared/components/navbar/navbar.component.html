@@ -17,15 +17,15 @@
       (click)="onProfile()"
       (keydown.enter)="onProfile()"
       tabindex="0">
-      @if (imagePath !== '') {
-        <img class="profile-btn" [src]="imagePath" alt="" />
+      @if (imagePath() !== '') {
+        <img class="profile-btn" [src]="imagePath()" alt="" />
       } @else {
-        <p class="profile-btn">{{ firstLetter }}</p>
+        <p class="profile-btn">{{ firstLetter() }}</p>
       }
     </a>
   </div>
   <!-- Profile window -->
-  @if (activeProfile) {
+  @if (activeProfile()) {
     <div class="vertical-secondary-nav" [@moveDown]>
       <app-nav-elements
         type="profile"

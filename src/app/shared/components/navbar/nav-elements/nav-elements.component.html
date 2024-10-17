@@ -1,9 +1,9 @@
-@if (type === 'dashboard') {
+@if (type() === 'dashboard') {
   <a
     class="nav-elem"
     routerLink="/dashboard"
     routerLinkActive="active"
-    [ngClass]="borderAnimation ? 'border-animation' : 'underline-animation'">
+    [ngClass]="borderAnimation() ? 'border-animation' : 'underline-animation'">
     <svg
       viewBox="0 0 1024 1024"
       class="nav-elem-icon"
@@ -14,12 +14,12 @@
     </svg>
     <p class="nav-elem-description">{{ text.dashboard }}</p>
   </a>
-} @else if (type === 'finances') {
+} @else if (type() === 'finances') {
   <a
     class="nav-elem"
     routerLink="/finances"
     routerLinkActive="active"
-    [ngClass]="borderAnimation ? 'border-animation' : 'underline-animation'">
+    [ngClass]="borderAnimation() ? 'border-animation' : 'underline-animation'">
     <svg
       class="nav-elem-icon"
       viewBox="0 0 20 20"
@@ -32,12 +32,12 @@
     </svg>
     <p class="nav-elem-description">{{ text.finance }}</p>
   </a>
-} @else if (type === 'accounts') {
+} @else if (type() === 'accounts') {
   <a
     class="nav-elem"
     routerLink="/accounts"
     routerLinkActive="active"
-    [ngClass]="borderAnimation ? 'border-animation' : 'underline-animation'">
+    [ngClass]="borderAnimation() ? 'border-animation' : 'underline-animation'">
     <svg
       class="nav-elem-icon"
       viewBox="0 0 24 24"
@@ -58,12 +58,12 @@
     </svg>
     <p class="nav-elem-description">{{ text.accounts }}</p>
   </a>
-} @else if (type === 'profile') {
+} @else if (type() === 'profile') {
   <a
     class="nav-elem"
     routerLink="/profile"
     routerLinkActive="active"
-    [ngClass]="borderAnimation ? 'border-animation' : 'underline-animation'">
+    [ngClass]="borderAnimation() ? 'border-animation' : 'underline-animation'">
     <svg
       class="nav-elem-icon"
       viewBox="0 0 24 24"
@@ -75,12 +75,12 @@
     </svg>
     <p class="nav-elem-description">{{ text.profile }}</p>
   </a>
-} @else if (type === 'settings') {
+} @else if (type() === 'settings') {
   <a
     class="nav-elem"
     routerLink="/settings"
     routerLinkActive="active"
-    [ngClass]="borderAnimation ? 'border-animation' : 'underline-animation'">
+    [ngClass]="borderAnimation() ? 'border-animation' : 'underline-animation'">
     <svg
       class="nav-elem-icon"
       viewBox="0 0 24 24"
@@ -96,10 +96,10 @@
     </svg>
     <p class="nav-elem-description">{{ text.settings }}</p>
   </a>
-} @else if (type === 'logout') {
+} @else if (type() === 'logout') {
   <a
     class="nav-elem"
-    [ngClass]="borderAnimation ? 'border-animation' : 'underline-animation'"
+    [ngClass]="borderAnimation() ? 'border-animation' : 'underline-animation'"
     role="button"
     tabindex="0"
     (click)="onLogout()"

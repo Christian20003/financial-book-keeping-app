@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { selectUser } from '../../stores/UserStore/User.selector';
 import { moveDown, moveLeftToRight } from '../..';
@@ -9,24 +9,27 @@ import { moveDown, moveLeftToRight } from '../..';
   styleUrl: './navbar.component.scss',
   animations: [moveDown, moveLeftToRight],
 })
-export class NavbarComponent {
-  public imagePath: string = '';
-  public firstLetter: string = '';
-  public activeProfile: boolean = false;
+export class NavbarComponent implements OnInit {
+  public imagePath: WritableSignal<string> = signal('');
+  public firstLetter: WritableSignal<string> = signal('');
+  public activeProfile: WritableSignal<boolean> = signal(false);
 
-  constructor(private store: Store) {
+  constructor(private store: Store) {}
+
+  ngOnInit(): void {
     const data = this.store.select(selectUser);
     data.subscribe(state => {
-      this.imagePath = state.imagePath;
+      this.imagePath.set(state.imagePath);
       if (state.name != '') {
-        this.firstLetter = state.name.charAt(0);
+        const char = state.name.charAt(0).toUpperCase();
+        this.firstLetter.set(char);
       } else {
-        this.firstLetter = 'A';
+        this.firstLetter.set('A');
       }
     });
   }
 
   onProfile() {
-    this.activeProfile = !this.activeProfile;
+    this.activeProfile.update(value => !value);
   }
 }

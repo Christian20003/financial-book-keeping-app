@@ -4,11 +4,19 @@ import { Router, RouterLinkWithHref, RouterModule } from '@angular/router';
 import { NavElementsComponent } from './nav-elements.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { of } from 'rxjs';
-import { routes } from 'src/app/app-routing.module';
+import {
+  accountsPath,
+  dashboardPath,
+  financesPath,
+  profilePath,
+  routes,
+  settingsPath,
+} from 'src/app/app-routing.module';
 import { AuthenticationService } from 'src/app/auth/auth-overview/authentication.service';
 import { deleteUser } from 'src/app/shared';
 import { getNativeElement } from 'src/app/testing/testing-support';
 import { loginPath } from 'src/app/auth/auth-routing-module';
+import { DebugElement } from '@angular/core';
 
 describe('NavElementsComponent', () => {
   let component: NavElementsComponent;
@@ -18,6 +26,12 @@ describe('NavElementsComponent', () => {
   const stubService = jasmine.createSpyObj('AuthenticationService', [
     'deleteLogin',
   ]);
+  const getAnchorElem = (): DebugElement => {
+    return fixture.debugElement.query(By.css('a'));
+  };
+  const changeInput = (name: string, value: string): void => {
+    fixture.componentRef.setInput(name, value);
+  };
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
@@ -41,48 +55,48 @@ describe('NavElementsComponent', () => {
   });
 
   it('U-Test-2: Anchor "dashboard" should link to the dashboard route', () => {
-    component.type = 'dashboard';
+    changeInput('type', 'dashboard');
     fixture.detectChanges();
-    const debugElement = fixture.debugElement.query(By.css('a'));
+    const debugElement = getAnchorElem();
     const routerLink = debugElement.injector.get(RouterLinkWithHref);
-    expect(routerLink['href']).toEqual('/dashboard');
+    expect(routerLink['href']).toEqual('/' + dashboardPath);
   });
 
   it('U-Test-3: Anchor "finances" should link to the finances route', () => {
-    component.type = 'finances';
+    changeInput('type', 'finances');
     fixture.detectChanges();
-    const debugElement = fixture.debugElement.query(By.css('a'));
+    const debugElement = getAnchorElem();
     const routerLink = debugElement.injector.get(RouterLinkWithHref);
-    expect(routerLink['href']).toEqual('/finances');
+    expect(routerLink['href']).toEqual('/' + financesPath);
   });
 
   it('U-Test-4: Anchor "accounts" should link to the accounts route', () => {
-    component.type = 'accounts';
+    changeInput('type', 'accounts');
     fixture.detectChanges();
-    const debugElement = fixture.debugElement.query(By.css('a'));
+    const debugElement = getAnchorElem();
     const routerLink = debugElement.injector.get(RouterLinkWithHref);
-    expect(routerLink['href']).toEqual('/accounts');
+    expect(routerLink['href']).toEqual('/' + accountsPath);
   });
 
   it('U-Test-5: Anchor "profile" should link to the profile route', () => {
-    component.type = 'profile';
+    changeInput('type', 'profile');
     fixture.detectChanges();
-    const debugElement = fixture.debugElement.query(By.css('a'));
+    const debugElement = getAnchorElem();
     const routerLink = debugElement.injector.get(RouterLinkWithHref);
-    expect(routerLink['href']).toEqual('/profile');
+    expect(routerLink['href']).toEqual('/' + profilePath);
   });
 
   it('U-Test-6: Anchor "settings" should link to the settings route', () => {
-    component.type = 'settings';
+    changeInput('type', 'settings');
     fixture.detectChanges();
-    const debugElement = fixture.debugElement.query(By.css('a'));
+    const debugElement = getAnchorElem();
     const routerLink = debugElement.injector.get(RouterLinkWithHref);
-    expect(routerLink['href']).toEqual('/settings');
+    expect(routerLink['href']).toEqual('/' + settingsPath);
   });
 
   it('U-Test-7: After clicking the logout anchor element, the dispatch function should be called with delete action', () => {
     stubService.deleteLogin.and.returnValue(of('Success'));
-    component.type = 'logout';
+    changeInput('type', 'logout');
     fixture.detectChanges();
     spyOn(store, 'dispatch');
     const element = getNativeElement<NavElementsComponent, HTMLAnchorElement>(
@@ -95,7 +109,7 @@ describe('NavElementsComponent', () => {
 
   it('U-Test-8: After clicking the logout anchor element, the navigate function should be called with the correct route', () => {
     stubService.deleteLogin.and.returnValue(of('Success'));
-    component.type = 'logout';
+    changeInput('type', 'logout');
     fixture.detectChanges();
     spyOn(router, 'navigate');
     const element = getNativeElement<NavElementsComponent, HTMLAnchorElement>(

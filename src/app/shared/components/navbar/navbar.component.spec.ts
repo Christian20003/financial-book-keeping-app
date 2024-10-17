@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { NavbarComponent } from './navbar.component';
 import { MockStore, provideMockStore } from '@ngrx/store/testing';
 import { RouterLinkWithHref, RouterModule } from '@angular/router';
-import { dashboardPath, routes } from 'src/app/app-routing.module';
-import { MockComponent } from 'ng-mocks';
-import { LogoComponent } from '../logo/logo.component';
-import { NavElementsComponent } from './nav-elements/nav-elements.component';
 import { By } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MemoizedSelector } from '@ngrx/store';
+import { MockComponent } from 'ng-mocks';
+import { dashboardPath, routes } from 'src/app/app-routing.module';
 import {
   getNativeElement,
   getNativeElements,
 } from 'src/app/testing/testing-support';
+import { NavbarComponent } from './navbar.component';
+import { LogoComponent } from '../logo/logo.component';
+import { NavElementsComponent } from './nav-elements/nav-elements.component';
 import { TestUser, User } from '../../models/User';
 import { selectUser } from '../../stores/UserStore/User.selector';
-import { MemoizedSelector } from '@ngrx/store';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;

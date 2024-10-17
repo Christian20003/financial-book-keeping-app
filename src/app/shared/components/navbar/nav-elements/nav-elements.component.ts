@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, InputSignal } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { AuthenticationService } from 'src/app/auth/auth-overview/authentication.service';
@@ -11,8 +11,8 @@ import { deleteUser } from 'src/app/shared/stores/UserStore/User.actions';
   styleUrl: './nav-elements.component.scss',
 })
 export class NavElementsComponent {
-  @Input() public type: string = 'dashboard';
-  @Input() public borderAnimation: boolean = false;
+  public type: InputSignal<string> = input<string>('dashboard');
+  public borderAnimation: InputSignal<boolean> = input<boolean>(false);
 
   public readonly text = {
     dashboard: 'Dashboard',
