@@ -72,13 +72,13 @@ $default-border-radius: 0.3rem;
     $blur               - the actual blur effect and its strength
     $background-color   - the background color
 */
-@mixin blur-container($blur: blur(0.3rem), $background-color: none){
+@mixin blur-container($height: 100%, $transform: translate(0, 0), $blur: blur(0.3rem), $background-color: none){
     position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%,-50%);
+    top: 0;
+    transform: $transform;
     width: 100%;
-    height: 100%;
+    height: $height;
     backdrop-filter: $blur;
+    border-radius: 1%;
     background-color: $background-color;
 }

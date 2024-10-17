@@ -9,22 +9,16 @@ import { AuthModule } from './auth/auth.module';
 import { userReducer } from './shared/stores/UserStore/User.reducer';
 import { userEffects } from './shared/stores/UserStore/User.effects';
 import { DashboardModule } from './dashboard/dashboard.module';
-import { NavbarComponent } from './shared/components/navbar/navbar.component';
-import { LogoComponent } from './shared/components/logo/logo.component';
-import { NavElementsComponent } from './shared/components/navbar/nav-elements/nav-elements.component';
+import { SharedModule } from './shared/components/shared.module';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NavbarComponent,
-    LogoComponent,
-    NavElementsComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
     AuthModule,
     DashboardModule,
+    SharedModule,
     StoreModule.forRoot({ user: userReducer }, {}),
     EffectsModule.forRoot([userEffects]),
   ],

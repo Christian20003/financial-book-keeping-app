@@ -61,6 +61,14 @@ $desktop-screen-width: 26rem;
         }
     }
 
+    .loading-block {
+        position: relative;
+
+        #loading {
+            @include container.blur-container($height: 26.5rem, $transform: translate(0.15%,-100%), $background-color: rgb(colors.$very-dark-gray, 0.5));
+        }
+    }
+
     #error-msg{
         position: absolute;
         max-width: 20rem;

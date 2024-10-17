@@ -22,6 +22,7 @@ import { securityCode, loginData, registerData } from '../auth.interface';
   animations: [moveLeftToRight, moveRightToLeft],
 })
 export class AuthOverviewComponent {
+  // TODO: Loading Screen
   // Boolean which describes if the loading screen should be displayed
   waiting = false;
   // Saves some potencial error message occurring using the authentication service
