@@ -2,6 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LoadingComponent } from './loading.component';
 import { getNativeElement } from 'src/app/testing/testing-support';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('LoadingComponent - Unit-Tests', () => {
   let component: LoadingComponent;
@@ -10,6 +11,7 @@ describe('LoadingComponent - Unit-Tests', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LoadingComponent],
+      imports: [BrowserAnimationsModule],
     });
     fixture = TestBed.createComponent(LoadingComponent);
     component = fixture.componentInstance;

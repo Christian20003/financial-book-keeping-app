@@ -15,7 +15,6 @@ export const profilePath: string = 'profile';
 export const settingsPath: string = 'settings';
 
 export const routes: Routes = [
-  { path: '', redirectTo: loginPath, pathMatch: 'full' },
   // TODO: Is there a smarter solution?
   {
     path: loginPath,
@@ -29,6 +28,7 @@ export const routes: Routes = [
   { path: accountsPath, component: DashboardOverviewComponent },
   { path: profilePath, component: DashboardOverviewComponent },
   { path: settingsPath, component: DashboardOverviewComponent },
+  { path: '', redirectTo: loginPath, pathMatch: 'full' },
 ];
 
 @NgModule({

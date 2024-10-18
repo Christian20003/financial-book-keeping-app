@@ -1,5 +1,5 @@
 <div class="container">
-  <div class="outer-circle">
+  <div class="outer-circle" [@growShrink]>
     <div class="inner-circle">
       <svg
         version="1.1"
@@ -52,7 +52,7 @@
       </svg>
     </div>
   </div>
-  <div class="loading-description">
+  <div class="loading-description" [@moveLeftToRight]>
     <h3 class="loading-title">{{ text.title }}</h3>
     <p class="loading-text">{{ message() }}</p>
   </div>

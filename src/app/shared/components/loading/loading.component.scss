@@ -5,6 +5,7 @@
 .container{
     display: grid;
     height: 100%;
+    @include container.blur-container($background-color: rgb(colors.$very-dark-gray, 0.5));
 
     .outer-circle {
         padding: 0.8rem;

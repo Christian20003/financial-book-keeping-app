@@ -41,11 +41,9 @@
   </div>
   <!-- Loading screen -->
   @if (waiting) {
-    <div class="loading-block" style="position: relative">
-      <app-loading
-        id="loading"
-        message="Hello my friends i am now here"></app-loading>
-    </div>
+    <app-loading
+      id="loading"
+      message="Hello my friends i am now here"></app-loading>
   }
   <!-- Error block -->
   @if (error) {
