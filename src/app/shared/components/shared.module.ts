@@ -6,6 +6,7 @@ import { LogoComponent } from './logo/logo.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SmallErrorMsgComponent } from './small-error-msg/small-error-msg.component';
 import { NavElementsComponent } from './navbar/nav-elements/nav-elements.component';
+import { ToastComponent } from './toast/toast.component';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { NavElementsComponent } from './navbar/nav-elements/nav-elements.compone
     NavbarComponent,
     SmallErrorMsgComponent,
     NavElementsComponent,
+    ToastComponent,
   ],
   imports: [CommonModule],
   exports: [
@@ -23,6 +25,7 @@ import { NavElementsComponent } from './navbar/nav-elements/nav-elements.compone
     LogoComponent,
     NavbarComponent,
     SmallErrorMsgComponent,
+    ToastComponent,
   ],
 })
 export class SharedModule {}
